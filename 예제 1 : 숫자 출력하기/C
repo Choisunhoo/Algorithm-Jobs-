@@ -1,4 +1,4 @@
-ds//예제 1 : 숫자 출력하기
+//예제 1 : 숫자 출력하기
 #include <stdio.h>
 
 int main(){
@@ -11,7 +11,25 @@ int main(){
     b = 3;
     c = 5; 
     // 정수 a, b, c를 출력
-    printf("%d %d %d\n",a,b,c);
+    printf("%d %d %d",a,b,c);
+
+    return 0;
+}
+
+
+or 
+
+// 예제 1 : 숫자 출력하기 더욱 간단한 방법
+#include <stdio.h>
+ 
+int main(){
+    // 정수 a, b, c가 있다는 것을 입력함과 동시에 값을 저장해줌 
+    int a = 1;
+    int b = 3;
+    int c = 5; 
+    
+    // 정수 a, b, c를 출력
+    printf("%d %d %d",a,b,c);
 
     return 0;
 }
