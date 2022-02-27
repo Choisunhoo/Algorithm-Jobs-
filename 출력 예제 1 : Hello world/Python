@@ -1,0 +1,4 @@
+#  출력 예제 1 : Hello world (Python)
+ 
+print("Hello world!")
+print("My name is blahblahblah.")
