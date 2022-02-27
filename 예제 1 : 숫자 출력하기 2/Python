@@ -1,0 +1,11 @@
+# 예제 1 : 숫자 출력하기 2
+
+# a, b 변수값을 입력
+a, b = 4, 2
+
+# a,b 의 사칙연산과 나머지를 구해주는 내용을 출력
+print(a, "+", b, ":", int(a+b))
+print(a, "-", b, ":", int(a-b))
+print(a, "*", b, ":", int(a*b))
+print(a, "/", b, ":", int(a/b))
+print(a, "%", b, ":", int(a%b))
