@@ -1,0 +1,12 @@
+# 조건문의 문법 (if)
+
+# x, y 변수값을 입력값으로 저장 
+x, y = map(int, input().split())
+
+# 조건문 생성과 그에따른 값 반환
+if x > y: 
+    print(x)
+elif x < y: 
+    print(y)
+else: 
+    print("same")
