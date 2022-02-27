@@ -1,0 +1,16 @@
+//예제 1 : 숫자 출력하기 2
+#include <stdio.h>
+
+int main(){
+    // 정수변수 a와 b의 값을 입력  
+    int a = 4, b = 2; 
+
+    // a와 b의 4칙연산와 나누기를 구하는 식을 출력, 여기서 나누기는 % 부호인데 이를 확실히 출력하기 위해서 2번을 입력해준다
+    printf("%d + %d : %d\n",a,b,a+b);
+    printf("%d - %d : %d\n",a,b,a-b);
+    printf("%d * %d : %d\n",a,b,a*b);
+    printf("%d / %d : %d\n",a,b,a/b);
+    printf("%d %% %d : %d",a,b,a%b);
+
+    return 0; 
+}
