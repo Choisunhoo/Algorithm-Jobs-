@@ -1,0 +1,11 @@
+# 예제 1 : 계산기 만들기
+
+# a, b 변수값을 입력값으로 저장 
+a, b = map(int, input().split())
+
+# a,b 의 사칙연산과 나머지를 구해주는 내용을 출력, 나누기만 
+print(a, "+", b, ":", int(a+b))
+print(a, "-", b, ":", int(a-b))
+print(a, "*", b, ":", int(a*b))
+print(a, "/", b, ":", float(a/b))
+print(a, "%", b, ":", int(a%b))
