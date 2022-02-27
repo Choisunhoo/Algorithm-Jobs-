@@ -1,0 +1,11 @@
+// 출력 예제 1 : Hello world (C/C++)
+// 파이썬과의 차이점: 원하는 코드를 입력하기 전에 #include <stdio.h>, int main(), {return 0;} 등 입력해야할 코드들이 있음
+// 출력을 위해서는 print("") 이 아닌 printf(""); 그리고 다음줄에서 바로 띄어쓰기가 되는게 아닌 \n을 입력해 줘야 띄어쓰기가 실행됨
+
+#include <stdio.h>
+
+int main(){
+    printf("Hello world!\n");
+    printf("My name is blahblahblah.");
+    return 0; 
+return 0; 
