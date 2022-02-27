@@ -1,0 +1,21 @@
+// 예제 1 : 정수 비교
+#include <stdio.h>
+int main(){
+    // x, y 정수 변수를 저장 
+    int x, y; 
+    // x, y를 입력 가능하게 해줌
+    scanf("%d %d",&x ,&y);
+
+    //  # 조건문 생성과 그에따른 값 반환
+    if (x>y){
+        printf("%d", x);
+    }
+    else if (x<y){
+        printf("%d", y);
+    }
+    else {
+        printf("same");
+    }
+
+    return 0;
+}
