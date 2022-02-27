@@ -1,0 +1,17 @@
+ds//예제 1 : 숫자 출력하기
+#include <stdio.h>
+
+int main(){
+    // 정수 a, b, c가 있다는 것을 입력
+    int a;
+    int b;
+    int c; 
+    // 정수 a, b, c에 따른 값을 저장
+    a = 1;
+    b = 3;
+    c = 5; 
+    // 정수 a, b, c를 출력
+    printf("%d %d %d\n",a,b,c);
+
+    return 0;
+}
