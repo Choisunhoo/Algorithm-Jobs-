@@ -1,0 +1,8 @@
+# 짝수의 합 구하기 
+
+N = int(input())
+tnt = 0
+for i in range(2, N+1, 2):
+  tnt += i
+  
+print(tnt)
