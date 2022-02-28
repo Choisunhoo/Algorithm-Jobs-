@@ -1,0 +1,13 @@
+// 예제 1 : Hello World! * 10 (while)
+#include <stdio.h>
+int main(){
+    int cnt = 0;
+
+    while (cnt<10) {
+        cnt += 1;
+
+        printf("Hello World!\n");
+    }
+
+    return 0;
+}
