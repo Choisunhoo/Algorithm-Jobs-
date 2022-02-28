@@ -1,0 +1,7 @@
+# 반복문의 문법 : for
+
+sum = 0 
+for i in range(10):
+    sum += i 
+
+print(sum)
