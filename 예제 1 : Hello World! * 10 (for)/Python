@@ -1,0 +1,4 @@
+# 예제 1 : Hello World! * 10 (for)
+
+for i in range(10):
+    print("Hello World!")
