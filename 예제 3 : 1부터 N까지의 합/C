@@ -1,0 +1,13 @@
+// 예제 3 : 1부터 N까지의 합
+#include <stdio.h>
+int main(){
+    int sum = 0;
+    int N; 
+    scanf("%d", &N);
+
+    for (int i=1; i <= N; i += 1) {
+        sum += i;
+    }
+    printf("%d",sum);
+    return 0;
+}
