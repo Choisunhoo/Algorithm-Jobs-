@@ -1,0 +1,8 @@
+# 배수의 개수 세기 
+data = list(map(int, input().split()))
+C = data.pop()
+cnt = 0 
+for i in range(min(data), max(data)+1):
+  if i % C == 0:
+    cnt += 1
+print(cnt)
