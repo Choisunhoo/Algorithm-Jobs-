@@ -1,0 +1,14 @@
+// 반복문의 문법 : while
+#include <stdio.h>
+int main() {
+    int cnt = 0;
+    int sum = 0;
+
+    while(cnt < 10) {
+        sum += cnt;
+        cnt += 1;
+    }
+
+    printf("%d", sum);
+    return 0;
+}
