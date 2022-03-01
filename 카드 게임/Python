@@ -1,0 +1,15 @@
+team_one = list(map(int, input().split()))
+team_two = list(map(int, input().split()))
+one, two = 0, 0 
+for i in range(10):
+  if team_one[i] > team_two[i]:
+    one += 1
+  elif team_one[i] < team_two[i]:
+    two += 1
+
+if one > two:
+  print("A")
+elif one < two:
+  print("B")
+else:
+  print("D")
