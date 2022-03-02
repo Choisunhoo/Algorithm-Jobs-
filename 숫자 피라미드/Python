@@ -1,0 +1,30 @@
+N, S = map(int, input().split())
+now = S
+start = S
+for i in range(1, N+1):
+  print(" "*(N-i), end="")
+  if i == 1:
+    print(S, end="")
+  elif i % 2 == 0:
+    start += 1
+    if start == 10:
+      start = 1
+    now = start
+    for j in range(i*2-1):
+      print(now, end="")
+      now += 1
+      if now == 10:
+        now = 1
+      start = now
+  elif i % 2 == 1:
+    for _ in range(i*2-2):
+      start += 1
+      if start == 10:
+        start = 1 
+    now = start
+    for _ in range(i*2-1):
+      print(now, end="")
+      now -= 1
+      if now == 0:
+        now = 9
+  print("")
