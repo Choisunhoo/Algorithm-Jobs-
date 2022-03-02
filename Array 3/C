@@ -1,0 +1,15 @@
+#include <stdio.h>
+int main(){
+    int N, start = 0, now = 0;
+    scanf("%d", &N);
+    for(int i = 1; i <= N; i++) {
+        start += i;
+        now = start;
+        for(int j = i; j <= N; j++) {
+            printf("%d ", now);
+            now += j;
+        }
+        printf("\n");
+    }
+    return 0;
+}
