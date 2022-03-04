@@ -1,0 +1,40 @@
+#include <stdio.h>
+int main(){
+    // 학생수, 같은반이였던 학생수, 그 학생을 저장
+    int n, result = -1, resultNumber = 0;
+    // 2차원 배열 생성
+    int student[1005][5];
+    // 학생수 입력
+    scanf("%d",&n);
+    
+    // 학생별 정보 입력
+    for (int i = 1; i <=n; i++){
+        for (int j = 0; j < 5; j++){
+            scanf("%d", &student[i][j]);
+        }
+    }
+    // 학생끼리 비교
+    for (int i = 1; i <= n; i++) {
+        // 각 학생별 같은반 학생수 초기화
+        int numStudent = 0;
+        for (int j = 1; j <= n; j++){
+            // 같은 학생을 비교할 경우 continue
+            if(i==j) continue;
+            // 1~5학년까지 같은 반이였던 경우 학생수를 추가해줌
+            if(student[i][0]==student[j][0]||
+               student[i][1]==student[j][1]||
+               student[i][2]==student[j][2]||
+               student[i][3]==student[j][3]||
+               student[i][4]==student[j][4]) numStudent++;
+
+        }
+        // 학생별로 지금까지 기록되어있는 결과보다 더 많은 학생들과 같은 반이면 학생번호와 학생수 갱신
+        if (result < numStudent) {
+            result = numStudent;
+            resultNumber = i;
+        }
+    }
+    // 결과 출력
+    printf("%d\n", resultNumber);
+    return 0;
+}
