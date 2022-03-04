@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main(){
+    // 2차원 그래프 선언
+    int array[10][10];
+    // 좌표 x 1~5 y 1~5 까지의 숫자를 입력해줌
+    for (int i = 1; i <=5; i++){
+        for (int j=1; j <=5; j++){
+            scanf("%d",&array[i][j]);
+        }
+    }
+    // 주변보다 작은 것을 구하기 위해서는 가장자리에 있는 애들도 신경써줘야 하니 1~5 보다 한칸씩 더 많은 0~ 6까지를 무조건 작게 만들어주는 99를 입력해줌
+    for (int i = 0; i <=6; i++) array[0][i] = 99;
+    for (int i = 0; i <=6; i++) array[6][i] = 99;
+    for (int i = 0; i <=6; i++) array[i][0] = 99;
+    for (int i = 0; i <=6; i++) array[i][6] = 99;
+    
+    // 상하좌우 보다 작은 경우 *를 출력 그렇지 않은 경우 원래 숫자를 출력 해주는 반복문 
+    for (int i = 1; i <=5; i++){
+        for (int j=1; j <=5; j++){
+            if (array[i-1][j] > array[i][j] &&
+                array[i][j-1] > array[i][j] &&
+                array[i][j+1] > array[i][j] &&
+                array[i+1][j] > array[i][j] ) printf("* ");
+                else printf("%d ", array[i][j]);
+        }
+        # 한행이 끝날때마다 다음 열로 가는 printf를 입력 
+        printf("\n");
+    }
+    return 0;
+}
