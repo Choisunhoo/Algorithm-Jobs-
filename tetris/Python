@@ -1,0 +1,46 @@
+import copy
+
+# 테트리스를 할 곳의 행과 열을 입력 받음
+c, r = map(int, input().split())
+# 몇번째 행인지와 몇줄이 사라지는지를 저장하는 변수를 초기화
+result, answer = 0, -1
+# 테트리스를 할 2차원 그래프를 입력받고 만들어줌
+graph = []
+for i in range(r):
+    graph.append(list(map(int, input().split())))
+    
+# 행의 개수만큼 반복문 시작
+for i in range(c):
+    # 매 행마다 테트리스를 할 곳을 초기화
+    graph_check = copy.deepcopy(graph)
+    # 
+    cnt = 0
+    # 열이 4번째보다 작은 곳에 이미 블록이 있는 경우 넣으면 게임 오버니깐 탈출문을 걸어줌 
+    for j in range(r):
+        if j <= 3 and graph_check[j][i] == 1:
+            break 
+        # 그렇지 않은 경우 4보다 작거나 같고 블록이 없는 곳에 차례대로 블록을 넣어줌 
+        elif j > 3 and graph_check[j][i] == 1:
+            for k in range(1, 5):
+                graph_check[j-k][i] = 1
+            break
+        # 전부다 블록이 없는 경우 맨 밑에서 4개의 블록을 넣어줌 
+        elif j == r-1 and graph_check[j][i] == 0:
+            for k in range(4):
+                graph_check[j-k][i] = 1
+    
+    # 매 열마다 모든 행이 블록이 있는 경우에 사라지는게 가능한 줄의 수를 더해줌 
+    for l in range(r):
+        s = 0 
+        for m in range(c):
+            if graph_check[l][m] == 1:
+                s += 1
+        if s == c:
+            cnt += 1
+    # 지금 저장된 결과값보다 더 많은 블록을 지운 경우 새로운 결과 값을 저장        
+    if cnt > result:
+        result = cnt 
+        answer = i
+        
+# 결과값 출력
+print(answer+1, result)
