@@ -1,0 +1,19 @@
+# 삽입정렬, 원소를 차례대로 정렬된 배열에 삽입시키는 방법
+
+# 정렬할 숫자의 개수를 입력 
+N = int(input())
+# 정렬할 숫자를 리스트로 정리 
+data = list(map(int, input().split()))
+
+# 정렬 시작
+for i in range(1, N):
+    # 정렬할 순서보다 전에 있는 것들 중에 한개씩 비교를 하면서 정렬할 숫자가 더 작으면 바꿔주고 큰경우 배치 후 반복문 종료 
+    for j in range(i, 0, -1):
+        if data[j] < data[j-1]:
+            data[j], data[j-1] = data[j-1], data[j]
+        else:
+            break
+            
+  
+# 정렬 결과 출력  
+print(data)   
