@@ -1,0 +1,29 @@
+// 선택정렬, 오름차순 정렬을 기준으로 최소값을 앞으로 이동시키는 정렬방법
+
+#include <stdio.h>
+int main() {
+    // 정렬할 숫자의 개수를 입력 받음
+    int n; 
+    scanf("%d", &n);
+    // 정렬할 숫자를 넣어둘 1차원 리스트를 생성해주고 정렬할 숫자들을 입력 받음
+    int data[100]; 
+    for (int i=0; i < n; i++){
+        scanf("%d", &data[i]);
+    }
+    // 정렬 시작
+    for (int i=0; i < n; i++){
+        // 정렬할 순서보다 전에 있는 것들 중에 한개씩 비교를 하면서 정렬할 숫자가 더 작으면 바꿔주고 큰경우 배치 후 반복문 종료 
+        for (int j = i; j >= 1; j--){
+            if (data[j] < data[j-1]){
+                int temp = data[j];
+                data[j] = data[j-1];
+                data[j-1] = temp;
+            }
+            else break; 
+        }
+    }
+    // 결과 출력
+    for(int j = 0; j < n; j++)
+        printf("%d ", data[j]); 
+    return 0;
+}
