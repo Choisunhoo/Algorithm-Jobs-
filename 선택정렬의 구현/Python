@@ -1,15 +1,23 @@
 # 선택정렬, 오름차순 정렬을 기준으로 최소값을 앞으로 이동시키는 정렬방법
 
+# 정렬할 숫자의 개수를 입력
 N = int(input())
+# 정렬할 숫자를 입력하면 list로 만들어줌
 data = list(map(int, input().split()))
 
+# 숫자의 개수만큼 반복문 시작 
 for i in range(N):
+    반복문마다 최소값의 크기와 위치를 저장해줌
     index = i
     min = data[i] 
+    # 반복문의 숫자보다 한단계더 앞에 있는 수부터 n의 개수까지 탐색을 해줌
     for j in range(i+1, N):
+        # 정해진 index의 숫자의 값보다 작은 경우 최소 숫자와 위치를 저장
         if data[j] < min:
             min = data[j]
             index = j
+    # 맨 앞의 위치와 값을 최소 숫자의 값과 위치와 변경
     data[i], data[index] = data[index], data[i]
 
+# 결과 출력
 print(data)
