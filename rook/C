@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main() {
+    // 체스판 입력
+    int arr[8][8];
+    // 결과값 초기화
+    int check = 0;
+    // 룩의 위치와 개수를 저장할 변수 생성
+    int rookx[2], rooky[2], rookcnt = 0;
+    // 완전탐색을 통해 룩을 찾아주고 룩의 위치를 입력 
+    for (int i = 0; i < 8; i++){
+        for (int j = 0; j < 8; j++){
+            scanf("%d ",&arr[i][j]);    
+            if (arr[i][j] == 2) {
+                rooky[rookcnt] = i;
+                rookx[rookcnt] = j;
+                rookcnt ++; 
+            }
+        }
+    }
+    // 룩의 개수만큼 반복문 실행
+    for (int k=0; k < 2; k++){
+        int ry = rooky[k], rx = rookx[k];
+        // 4개의 방향으로 갈수 있으니 반복문을 통해 앞에 킹이 있으면 결과값 갱신 앞에 아무것도 없으면 반복문 지속 앞에 장애물이 있는경우 반복문 종료를 해줌 
+        for (int i = rx + 1; i < 8; i++) {
+            if(arr[ry][i] == 1) check = 1;
+            else if (arr[ry][i] == 3) break; 
+        }
+        for (int i = ry - 1; i >= 0; i--) {
+            if(arr[i][rx] == 1) check = 1;
+            else if (arr[i][rx] == 3) break; 
+        }
+        for (int i = rx - 1; i >= 0; i--) {
+            if(arr[ry][i] == 1) check = 1;
+            else if (arr[ry][i] == 3) break; 
+        }
+        for (int i = ry + 1; i < 8; i++) {
+            if(arr[i][rx] == 1) check = 1;
+            else if (arr[i][rx] == 3) break; 
+        }
+    }
+    // 결과값 출력
+    printf("%d", check);
+    return 0;
+}  
