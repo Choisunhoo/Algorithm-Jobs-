@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main(){
+    // 색종이의 개수 입력 
+    int n; 
+    scanf("%d", &n);
+    // 색종이를 저장할 수 있는 최대크기의 2차원 리스트를 생성
+    int plane[101][101] = {0,};
+    // 각 색종이가 2차원 리스트에서 차지하고 있는 넓이를 입력하는 리스트 생성
+    int cnt[101] = {0,};
+    
+    // 각 색종이별 좌표와 크기를 입력후 반복문을 사용해서 색종이의 위치와 크기만큼 색을 칠해줌
+    for (int i = 0; i < n; i++) {
+        int a, b, c, d;
+        scanf("%d %d %d %d",&a, &b, &c, &d);
+
+        for (int j = b; j < b + d; j++){
+            for (int k = a; k < a + c; k++) {
+                plane[j][k] = i+1; 
+
+            }
+        }
+        // 2차원 리스트에 있는 색종이의 크기만큼 1차원 리스트 cnt에 저장
+        for (int i=0; i<=100; i ++){
+            for (int j=0; j<=100; j ++){
+                cnt[plane[i][j]]++;
+        }
+    }
+    // 결과 출력
+    for (int i=1; i<=n; i++){
+        printf("%d\n", cnt[i]);
+    }
+    return 0;
+}
