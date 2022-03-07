@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main() {
+    // 최대값과 좌표를 입력할 변수 생성
+    int r = 0, ry, rx;
+    
+    // 81개의 숫자를 반복문을 통해서 비교
+    for (int i = 1; i <=9; i++){
+        for (int j = 1; j <= 9; j++){
+            // 입력한 값이 저장된 최대값보다 크면 최대값과 좌표를 갱신
+            int a;
+            scanf("%d ",&a);
+            if (a > r) {
+                r = a;
+                ry = i;
+                rx = j; 
+            }
+        }
+    }
+    // 결과 출력
+    printf("%d\n", r);
+    printf("%d %d",ry, rx);
+    return 0;
+}
