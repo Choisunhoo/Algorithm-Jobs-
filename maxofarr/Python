@@ -1,0 +1,16 @@
+#가장 큰수의 좌표와 크기를 초기화 
+max_number, x, y = 0, 0, 0
+
+# 한줄씩 입력과 동시에 비교 
+for i in range(1, 10):
+    # 한줄의 리스트 입력 
+    data = list(map(int, input().split()))
+    # 리스트에서 지금 저장된 값보다 크면 크기와 좌표를 갱신 
+    for j in range(9):
+        if data[j] > max_number:
+            max_number = data[j]
+            x, y = i, j+1
+
+# 결과 출력 
+print(max_number)
+print(x, y)
