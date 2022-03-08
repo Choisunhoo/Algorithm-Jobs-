@@ -1,0 +1,2 @@
+a =mystr = "hello"
+print(a)
