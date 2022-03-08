@@ -1,0 +1,50 @@
+#include <stdio.h>
+int main() {
+    // 문자열 2개를 넣을 변수를 선언 
+    char A[100], B[100];
+
+    // 문자열 2개를 차례대로 입력 및 저장
+    scanf("%s", A);
+    scanf("%s", B);
+
+    // 문자열의 길이를 담을 변수를 선언
+    int lenA, lenB;
+    lenA = strlen(A);
+    lenB = strlen(B);
+
+    // 문자열의 길이가 같으면 한개씩 비교를 하면서 같으면 false를 유지하고 한개라도 다르면 true로 바꾼후 결과 출력
+    if(lenA == lenB){
+        bool flag = false; 
+        for(int i = 0; i<lenA; i++) {
+            if(A[i] != B[i])
+                flag = true;
+        }
+        if(flag == true) printf("Different!\n"); 
+        else printf("Same!\n");
+    }
+    // 문자열의 길이가 다른경우 같은 문자열일수 없기 때문에 결과를 출력
+    else{
+        printf("Different!\n"); 
+    }
+    return 0;
+}
+
+
+// or 
+
+
+#include <stdio.h>
+int main() {
+    // 문자열 2개를 넣을 변수를 선언 
+    char A[100], B[100];
+
+    // 문자열 2개를 차례대로 입력 및 저장
+    scanf("%s", A);
+    scanf("%s", B);
+
+    // 문자열을 비교하는 함수 strcmp를 사용하여 0인경우 같음을 출력 그 외에 숫자가 나오는 경우 다름을 출력
+    if(strcmp(A, B) == 0) printf("Same!\n");
+    else printf("Different!\n");
+
+    return 0;
+}
