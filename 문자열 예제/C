@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main(){
+    char mystr[10];
+    mystr[0] = 'h';
+    mystr[1] = 'e';
+    mystr[2] = 'l';
+    mystr[3] = 'l';
+    mystr[4] = 'o';
+    mystr[5] = '\0';
+
+    printf("%s", mystr); 
+    return 0;
+}
+
+//or
+
+#include <stdio.h>
+int main(){
+    char mystr[] = "hello";
+
+    printf("%s", mystr); 
+    return 0;
+}
