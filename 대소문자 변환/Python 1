@@ -1,0 +1,23 @@
+# 모든 대문자와 소문자를 리스트에 넣어줌
+small = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+capital = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+
+#변환시킬 문자열을 입력 받음
+word = list(input())
+
+# 문자열을 반복문을 통해 하나하나 변환 
+for i in word:
+    # 문자가 소문자인경우 대문자로 변환
+    if i in small:
+        for j in range(len(small)):
+            if i == small[j]:
+                print(capital[j], end="")
+    # 문자가 대문자인경우 소문자로 변환
+    elif i in capital:
+        for j in range(len(capital)):
+            if i == capital[j]:
+                print(small[j], end= "")
+    # 그 외의 문자인 경우 그대로 출력
+    else:
+        print(i, end="")
+    
