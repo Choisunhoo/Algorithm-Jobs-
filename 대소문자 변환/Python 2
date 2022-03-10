@@ -1,0 +1,15 @@
+# 변환 시킬 문자열을 입력 받음
+word = list(input())
+
+# 아스키 코드를 통해서 문자의 개수만큼 반복문 실행
+for i in range(len(word)) :
+  # 대문자인 경우 소문자로 변환 및 출력
+  if 65 <= ord(word[i]) <= 90 :
+    print(chr(ord(word[i])+32), end="")
+  # 소문자인 경우 대문자로 변환 및 출력
+  elif 97 <= ord(word[i]) <= 122 :
+    print(chr(ord(word[i])-32), end="")
+  # 그 외의 문자인 경우 그대로 출력 
+  else: 
+    print(word[i], end="")
+            
