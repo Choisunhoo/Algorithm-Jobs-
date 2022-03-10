@@ -1,0 +1,5 @@
+# 변환시킬 문자를 출력 받음
+word = list(input())
+# swapcase라는 문자열 함수를 통해서 대문자와 소문자만 변환 
+for i in word:
+    print(i.swapcase(), end="")
