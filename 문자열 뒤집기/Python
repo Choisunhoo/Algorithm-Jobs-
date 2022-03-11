@@ -1,0 +1,4 @@
+# 리스트로 문자열을 입력
+word=list(input())
+# 문자열을reverse 함수를 통해서 뒤집고 반복문을 통해서 하나씩 출력
+for i in reversed(word): print(i, end="")
