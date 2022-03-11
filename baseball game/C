@@ -1,0 +1,57 @@
+#include <stdio.h>
+int main() {
+    // 게임을 진행할 횟수를 입력받을 변수 생성
+    int n;
+    // 결과값 초기화 
+    int result = 0;
+    // 게임의 내용을 저장할 2차원 그래프 생성
+    int data[105][3];
+    
+    // 게임의 횟수를 입력받음
+    scanf("%d",&n);
+    
+    // 게임의 횟수만큼 반복문을 통해서 게임의 내용을 입력 
+    for(int i = 0; i < n; i++) {
+        scanf("%d %d %d",&data[i][0], &data[i][1], &data[i][2]);
+    }
+    
+    // 123~987까지 겹치지 않는 모든 수를 완전탐색 
+    for(int i = 1; i <= 9; i++){
+        for(int j = 1; j <= 9; j++){
+            for(int k = 1; k <= 9; k++){
+                if(i != j && j != k && i != k) {
+                    // 수의 가능여부를 확인을 위한 bool 사용
+                    bool flag = false; 
+                    // 게임내용을 백, 십, 일의 자리의 숫자를 하나씩 구해줌
+                    for(int p = 0; p < n; p++) {
+                        int first = data[p][0] / 100;
+                        int second = (data[p][0] / 10) % 10; 
+                        int third = data[p][0] % 10;
+                        
+                        // 스트라이크와 볼의 횟수 초기화 
+                        int strike = 0, ball = 0; 
+                        
+                        // 백 십 일의 자리 숫자가 같은 자리에 있는 경우 스트라이크 추가 
+                        if (first == i) strike++;
+                        if (second == j) strike++;
+                        if (third == k) strike++;
+                        
+                        // 같은 자리는 아니지만 존재하는 경우 볼을 추가
+                        if(i == second || i == third) ball ++; 
+                        if(j == first || j == third) ball ++;
+                        if(k == first || k == second) ball ++; 
+                         
+                        // 볼과 스트라이크를 비교해서 하나라도 맞지 않으면 flag의 내용 변경
+                        if(data[p][1] != strike || data[p][2] != ball)
+                            flag = true;     
+                    }
+                    // 숫자가 하나 끝날때마다 flag의 내용이 달라지지 않았으면 결과에 추가 
+                    if (flag == false) result ++;
+                }
+            }
+        }
+    }
+    // 결과 출력
+    printf("%d\n",result); 
+    return 0; 
+}
