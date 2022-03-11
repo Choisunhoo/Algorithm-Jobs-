@@ -1,0 +1,19 @@
+# 문자열 입력 받기
+word = list(input())
+# 문자의 길이만큼 반복문 
+for i in range(len(word)):
+    # 빈칸인경우에는 무시를하고 아닌 경우에는 출력
+    if word[i] == " ":
+        continue
+    else:
+        print(word[i], end="")
+        
+        
+or 
+
+# 문자열 입력 받기
+word = input()
+# 문자의 길이만큼 반복문
+for i in word: 
+    # 문자의 공백을 제외하고 출력
+    if i != " ": print(i, end="")
