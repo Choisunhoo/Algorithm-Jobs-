@@ -1,0 +1,10 @@
+# 2수의 합을 반환하는  getsum이라는 함수를 생성
+def getsum(first, second):
+  return first + second
+
+# 더할 두개의 수를 입력 
+a, b = map(int, input().split())
+# getsum 함수를 두개의 수를 넣어서 실행 및 result 변수에 저장 
+result = getsum(a, b)
+# 결과 출력
+print(result)
