@@ -1,0 +1,22 @@
+#include <stdio.h>
+int getmin (int first, int second) {
+   if (first > second) {
+       return first;
+   }
+   else {
+       return second;
+   }
+}
+
+int main() {
+    int a, b;
+    int result; 
+
+    scanf("%d %d", &a, &b); 
+
+    result = getmin(a, b); 
+
+    printf("%d\n", result);
+    
+    return 0;
+}
