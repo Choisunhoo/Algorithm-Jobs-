@@ -1,0 +1,13 @@
+# 재귀함수를 사용하는 팩토리얼 함수 생성
+def getfactorial(n):
+  # 재귀함수를 멈춰줄 break를 생성 n 의 값이 0 일 경우에 1을 반환
+  if (n == 0):
+    return 1 
+  # 그렇지 않은경우 n * n보다 1작은 수로 getfactorial 함수를 실행 
+  else: 
+    return n * getfactorial(n-1)
+
+# 팩토리얼을 수를 입력 
+n = int(input())
+# 팩토리얼 함수를 통해 결과 출력
+print(getfactorial(n))
