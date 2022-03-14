@@ -1,0 +1,24 @@
+# 압축시킬 문자열을 입력 받는다 
+data = list(input())
+# 압출할 문자의 수를 초기화 시킨다
+cnt = 1
+# 첫번째로 압축시킬 문자는 문자열의 첫번째 문자
+word = data[0]
+# 문자열의 갯수-1 만큼 반복문을 반복하면서 이미 저장된 단어와 같은 단어인경우 cnt를 더해주고 아닌경우 지금까지 저장된 cnt와 저장된 단어를 출력을 하고 단어와 cnt를 갱신해 준다
+for i in range(1, len(data)):
+    if data[i] != word:
+        if cnt != 1:
+            print(cnt,end="")
+            print(word,end="")
+        else:
+            print(word,end="")
+        cnt = 1
+        word = data[i]
+    else:
+        cnt+= 1
+# 마지막 문자에 대해서 cnt가 1인경우는 그냥 단어만 출력 그렇지 않은경우는 cnt와 단어 출력
+if cnt != 1:
+  print(cnt,end="")
+  print(word,end="")
+else:
+  print(word,end="")
