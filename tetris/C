@@ -1,0 +1,69 @@
+#include <stdio.h>
+int main() {
+    // 테트리스를 실행할 행과 열을 저장할 변수 생성 
+    int c, r; 
+    // 모든칸에 블록이 있어서 사라지는 수의 제일 많은 위치와 사라지는 행의 개수를 저장하는 변수를 초기화
+	int result = 0;
+	int answer = -1; 
+    // 행과 열을 입력
+    scanf("%d %d",&c, &r);
+    // 테트리스를 실행할 2차원 그래프 생성
+    int graph[105][105]; 
+    // 반복문을 통해서 2차원 그래프에 블록의 위치를 입력해줌
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            scanf("%d", &graph[i][j]); 
+        }
+    }
+    // 행의 개수만큼 반복문을 실행 
+    for (int i = 0; i < c; i++) {
+        // 모든 행에 블록이 있어서 사라지는 줄을 기록하는 변수와 행을 저장하는 변수를 초기화 
+        int cnt = 0;
+        int index = 0;
+        // 열의 개수만큼 반복문 실행 
+        for (int j = 0; j < r; j++){
+            // 만약 세로 4칸짜리 블록을 넣을 장소가 없으면 i 번째 행열은 넘김 
+            if (j <= 3 && graph[j][i] == 1) break; 
+            // 만약 세로 4칸짜리 블록을 넣을 장소가 있으면 index를 저장해 주고 i부터 위로 4칸에 블록을 넣어주고 반복문 종료
+            else if  (j > 3 && graph[j][i] == 1) {
+                index = j - 1; 
+                for(int k = 1; k < 5; k++) {
+                    graph[j-k][i] = 1;
+                }
+                break;
+            }
+            // 만약 i 번째 행에 블록이 하나도 없다면 맨 밑부터 4개의 블록을 넣어준후 반복문 종료
+            else if  (j == r-1 && graph[j][i] == 0){
+                index = j;
+                for (int k = 0; k < 4; k++) {
+                    graph[j-k][i] = 1;
+                }
+               break;
+            }
+
+        }
+        // 만약 모든행에 블록이 있으면 cnt를 더해줌 
+        for (int l = 0; l < r; l++) {
+            int s = 0; 
+            for (int m = 0; m < c; m++){
+                if (graph[l][m] == 1) s++; 
+            }
+            if (s == c) cnt++; 
+        }
+        // 만약 i번째 열의 블록이 사라지는 개수가 지금까지 저장된 블록이 사라지는 최대 값보다 큰경우 결과를 갱신 
+        if (cnt > result) {
+            result = cnt; 
+            answer = i; 
+        }
+        // 저장해놓은 index를 통해서 테트리스 2차원 그래프를 초기화
+        if (index != 0) {
+            for (int k = 0; k < 4; k++) {
+                graph[index-k][i] = 0;
+            }
+        }
+    }   
+    // 결과값 출력 
+    answer = answer+1;
+    printf("%d %d",answer, result);
+    return 0; 
+}
