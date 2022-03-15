@@ -1,0 +1,25 @@
+// 스택 자료구조를 지원하는 라이브러리를 사용 
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// 스택 내에서 사용될 자료로 인트를 사용하겠다고 선언 
+stack<int> s; 
+
+int main(void) {
+    s.push(5); 
+    s.push(2); 
+    s.push(3); 
+    s.push(7);
+    s.pop(); 
+    s.push(1);
+    s.push(4);
+    s.pop();
+    
+    // 스택의 원소가 빌때까지 반복문을 사용
+    while (!s.empty()) {
+        // 스택의 최상단의 원소를 출력 후 제거 
+        cout << s.top() << ' ';
+        s.pop(); 
+    }
+}
