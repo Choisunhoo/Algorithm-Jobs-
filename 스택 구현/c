@@ -1,0 +1,108 @@
+#include <stdio.h>
+
+struct Stack {
+    // 데이터에 넣을 숫자들
+    int data[100];
+    // 지금 가지고 있는 원소의 개수 
+    int len = 0;
+    // 최대로 넣을수 있는 크기
+    int capacity = 0;
+
+    // 지금 가지고 있는 원소의 개수로 생성 
+    void create(int y) {
+        capacity = y;
+    }
+    // push 를 사용해서 원소를 넣음
+    void push(int y) {
+        // 지금 꽉 차있으면 stack overflow를 출력 
+        if(len >= capacity) {
+            printf("Stack overflow!\n");
+        }
+        // 그렇지 않으면 맨 오른쪽에 원소를 추가 
+        else {
+            data[len++] = y;
+        }
+
+    }
+    // 원소를 pop을 통해 제거 
+    void pop() {
+        // 만약 원소가 없을 경우에는 stack underflow를 출력 
+        if(len <= 0) {
+            printf("Stack underflow!\n");
+        }
+        // 원소가 있는경우에는 제일 오른쪽 원소를 0으로 초기화 후 길이를 줄임
+        else {
+            data[len-1] = 0; 
+            len--; 
+        }
+
+    }
+    // top을 통해서 맨 오른쪽 원소를 가져옴 
+    int top() {
+        // 만약 스택에 원소가 없다면 -1을 반환 
+        if (len <= 0) {
+            return -1; 
+        }
+        // 그렇지 않은 경우에는 스택의 오른쪽에 있는 원소를 반환 
+        else{
+            return data[len-1];
+        }
+
+    }
+    // 스택 안에 들어있는 원소의 개수를 반환 
+    int size() {
+
+        return len; 
+
+    }
+};
+int main(){
+    // s1이라는 스택을 만듬
+    Stack s1; 
+
+    // 스택의 크기는 최대 5
+    s1.create(5);
+
+    // 1~5까지 원소를 집어 넣어줌 
+    s1.push(1); 
+    s1.push(2); 
+    s1.push(3); 
+    s1.push(4); 
+    s1.push(5); 
+    // 6과 7은 이미 5개의 원소가 s1에 있기 때문에 들어갈수 없는 상황 으로 stack overflow 
+    s1.push(6); 
+    s1.push(7); 
+
+    // top을 통해서 제일 오른쪽에 있는 원소를 출력하는데 이는 overflow로 인해서 마지막에 push한 7이 아닌 최대치인 5가 출력됨 
+    printf("%d\n", s1.top()); 
+
+    // pop을 통해서 제일 오른쪽에 있는 원소를 제거
+    s1.pop();
+
+    // top을 통해서 제일 오른쪽에 있는 원소를 출력 5가 사라졌으니 그 바로전에 push된 4를 출력
+    printf("%d\n", s1.top()); 
+
+    // 원소 6을 넣어줌 
+    s1.push(6); 
+    // 7은 stack overflow인해서 넣어지지 않음 
+    s1.push(7);     
+
+    // top을 통해서 제일 오른쪽에 있는 원소 6을 출력 
+    printf("%d\n", s1.top()); 
+    // 지금 스택이 가지고 있는 원소는 순서대로 [1, 2, 3, 4, 6]
+
+    // pop을 통해 모든 원소를 빼줌
+    s1.pop();
+    s1.pop();
+    s1.pop();
+    s1.pop();
+    s1.pop();
+
+    // 더이상 뺄수 없는 stack underflow 의 상황 
+    s1.pop(); 
+
+    // size를 출력하지만 모든 원소를 제거 했음으로 0을 출력
+    printf("%d\n", s1.size());
+    
+    return 0;
+}
