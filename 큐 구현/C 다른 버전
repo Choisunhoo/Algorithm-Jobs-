@@ -1,0 +1,25 @@
+// 큐 자료구조를 지원하는 라이브러리를 사용 
+#include <bits/stdc++.h>
+
+using namespace std; 
+
+// 큐 내에서 사용될 자료로 인트를 사용하겠다고 선언
+queue<int> q; 
+
+int main(void) {
+    q.push(5); 
+    q.push(2); 
+    q.push(3); 
+    q.push(7); 
+    q.pop();
+    q.push(1); 
+    q.push(4);
+    q.pop();
+
+    // 큐의 원소가 빌때까지 반복문을 사용
+    while (!q.empty()) {
+        // 스택의 최하단의 원소를 출력 후 제거 
+        cout << q.front() << ' ';
+        q.pop()
+    } 
+}
