@@ -1,0 +1,22 @@
+from collections import deque
+
+def bfs(start, data):
+    queue = deque([start])
+    data[start-1] = True
+    while queue:
+        e = queue.popleft()
+        if e * 2 <= N and not data[e * 2 -1]:
+            queue.append(e*2)
+            data[e*2-1] = True
+        if e // 3 >= 1 and not data[e // 3 - 1]: 
+            queue.append(e // 3) 
+            data[e//3-1] = True
+
+
+N, K = map(int, input().split())
+data = [False] * N
+bfs (K, data)
+cnt = 0
+for i in data:
+    if i == False: cnt+= 1
+print(cnt)
