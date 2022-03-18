@@ -1,0 +1,13 @@
+# 문자열을 입력
+word = list(input())
+# 결과값을 초기화
+result = "YES"
+# 문자열의 길이만큼 반복문실행
+for i in range(len(word)):
+    # 만약 문자가 반대편과 하나라도 같지 않으면 결과값을 NO로 저장 그리고 반복문 종료
+    if word[i] != word[len(word)-i-1]:
+        result = "NO"
+        break 
+
+# 결과 출력 
+print(result)
