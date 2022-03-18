@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    // 문자열을 입력받을 변수 선언 
+    char arr[1005];
+    // 문자열을 입력
+    fgets(arr,1005,stdin);
+    // 문자열의 길이를 저장할 변수 선언
+    int len = strlen(arr);
+    // 뒤와 앞이 맞는 개수를 저장할 변수 선언
+    int cnt = 0; 
+    // 반복문을 통해 뒤와 앞을 비교해서 같은경우 cnt 추가 아닌경우 반복문 종료
+    for(int i; i < len; i++){
+          if (arr[i] != arr[len-i-1]) {
+              break;
+          }
+          else cnt++;
+    }
+    // 만약 모든 문자가 반전시 안맞는경우NO 맞는경우YES 
+    if (cnt == len) printf("YES");
+    else printf("NO");
+    return 0; 
+}
