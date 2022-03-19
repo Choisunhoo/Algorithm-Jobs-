@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+// 최대값을 저장할 변수 입력 
+const int MAX = 105; 
+
+// 문자의 개수와 문자열의 길이를 입력할 변수 생성 
+int n, r;
+
+// 문자열을 저장할 리스트와 어떤 문자가 들어가 있는지 확인할 리스트 생성 
+char word[MAX]; 
+bool word_check[MAX];
+
+
+// 순열을 구하는 함수(문자열의 길이) 시작 
+void find_permutation(int x) {
+    // 만약 문자열의 길이가 지정한 r보다 크거나 같으면 문자열을 출력 후 줄띄움 
+    if (x >=r) {
+        printf("%s\n", word);
+    }
+    // 그렇지 않은 경우 반복문을 통해서 문자를 하나씩 추가 
+    else {
+        for (int i = 0; i < n; i++) {
+            // i 번째 알파벳을 alpha 변수에 추가(c언어는 아스키 코드를 ord 로 안바꿔도 'a' + 정수를 하면 그 번호의 문자로 변경 "a"는 안되니 주의)
+            char alpha = i + 'a'; 
+            // 만약 문자확인 리스트에 i번째 알파벳이 없으면 있다고 체크를 해준뒤 문자열에 그 알파벳을 추가 
+            if (word_check[i] == false){
+                word_check[i] = true;
+                word[x] = alpha;
+                // 문자열에 알파벳이 추가 되었으면 재귀 함수를 통해서 x +1 번째 문자를 구하러 감 
+                find_permutation (x+1);
+                // 다음 반복문에 문제가 없도록 문자열을 저장할 리스트와 어떤 문자가 들어가 있는지 확인할 리스트에 x번째 문자와 i번째 알파벳 사용여부을 초기화 
+                word[x] = 0;
+                word_check[i] = false;
+            }
+        }
+    }
+        
+    
+}
+// 메인함수 
+int main() {
+    // 가능한 문자의 개수와 문자열의 길이를 입력 
+    scanf("%d %d", &n, &r);
+    // index 0번째 부터 순열 문자열를 구하기 위한 find_permutation 함수 시작 
+    find_permutation(0);
+
+    return 0;
+}
