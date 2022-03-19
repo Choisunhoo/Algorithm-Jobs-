@@ -1,0 +1,25 @@
+// 순열을 구하는 함수 생성(x = index번째의 문자열, n = 사용가능한 문자의수, r = 문자의 길이)
+def find_permutation(x, n, r):
+  // 만약 함수를 통해 저장된 문자열의 길이가 입력한 문자의 길이보다 크거나 같을 경우 반복문을 통해 문자열을 출력  
+  if x >= r:
+    for i in word: print(i, end="")
+    print()
+  // 그렇지 않은 경우 반복문을 통해 문자를 문자열에 추가 
+  else:
+    for i in range(n):
+      // 아스키 코드 a의 값인 97에 i의 값을 더한뒤 문자로 바꾸어서 alpha라는 변수에 저장 
+      alpha = chr(97 + i)
+      // 만약 alpha가 문자열을 저장하는 변수에 없는 경우 문자열에 alpha를 추가해줌 
+      if alpha not in word:
+        word[x] = alpha 
+        // 그 후 x+1번째 문자를 문자열에 넣기위해 재귀함수를 사용
+        find_permutation(x+1, n, r)
+        // 다음 반복문에 영향을 안끼치게 x번째 문자열을 초기화 
+        word[x] = 0 
+
+// 사용가능한 문자의 개수와 문자열의 길이를 입력
+n, r = map(int, input().split())
+// 문자를 저장할 리스트와 문자사용 확인 여부를 위한 리스트 생성
+word = [0] * r
+// 순열을 구하는 함수 시작
+find_permutation(0, n, r)
