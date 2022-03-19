@@ -1,0 +1,12 @@
+// 이진법 함수 생성
+def binary(n):
+    // 만약 n의 값이 0과 같으면 return 
+    if(n == 0):
+        return
+    // 그 외의 경우에는 n 을 2로 나눈 몪의 값만큼 이진법 함수의 재귀함수 실행
+    binary(int(n / 2))
+    // n 을 2로 나눈 나머지를 출력 
+    print(n % 2, end = '')
+
+// 이진법을 통해 출력하고 싶은 숫자를 입력
+binary(int(input()))
