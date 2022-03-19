@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    // 첫번째 문자열을 저장할 문자열 변수 생성 
+    char first_word[1005];
+    // 두번째 문자열을 저장할 문자열 변수 생성 
+    char second_word[1005];
+    
+    // 첫번째 문자열을 입력 
+    fgets(first_word,1005,stdin);
+    // 두번째 문자열을 입력 
+    fgets(second_word,1005,stdin);
+
+    // 첫번째 문자열의 길이를 저장 
+    int len_first_word = strlen(first_word);
+    // 두번째 문자열의 길이를 저장
+    int len_second_word = strlen(second_word);
+    
+    // 두번째 문자열이 첫번째 문자열 안에 있는지 관계여부 확인을 위한 변수 저장
+    int cnt = 0; 
+    
+    // 반복문 시작 (반복문은 첫번째 문자열의 길이- 두번째 문자열의 길이만큼 반복)
+    for (int i = 0; i < len_first_word - len_second_word; i ++) {
+        // 관계여부 확인을 위한 변수 초기화
+        cnt = 0; 
+        // 두번째 문자열의 길이만큼 반복문을 통해서 문자열의 비교
+        for (int j = 0; j < len_second_word; j++) {
+            // 만약 첫번째 문자열과 두번째 문자열이 다른경우에는 반복문 종료
+            if (first_word[i+j] != second_word[j]) {
+                break; 
+            }
+            // 그렇지 않은 경우에는 관계여부 확인 변수에 숫자를 추가
+            else {
+                cnt ++;  
+            }
+        }
+        // 만약 관계여부 확인 변수가 두번째 문자열의 길이와 같은 경우에는 반복문 종료
+        if (cnt == len_second_word) {
+            break; 
+        } 
+    }
+    // 만약 관계여부 확인 변수가 두번째 문자열의 길이와 비교를 해서 결과 출력 
+    if (cnt == len_second_word) printf("YES");
+    else printf("NO");
+    return 0; 
+}
