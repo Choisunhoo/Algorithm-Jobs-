@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+
+// sort 함수를 생성 (문자열, 문자열의 개수)
+void Sort(char(*str)[105], int n) {
+    // 문자열을 정렬가능하게 문자열의 index와 문자열을 저장할 변수 생성 
+    int min; 
+    char temp[105]; 
+    
+    // 반복문을 통해서 총 문자열의 개수 -1 개만큼 반복 
+    for (int i = 0; i < n-1; i++) {
+        // 문자열의 인덱스를 반복문을 시작하는 문자열의 인덱스로 초기화 
+        min = i;
+        // 반복문을 통해서 앞에서 시작한 반복문에서 지정된 문자열의 뒤에 있는 문자열의 개수만큼 반복
+        for (int k = i+1; k < n; k++) {
+            // strcmp 함수를 통해서 지금 저장되어 있는 문자열과 index k의 문자열을 비교해서 1보다 큰경우 (index k의 문자열이 오름차순으로 빠른경우) 인덱스를 갱신
+            if (strcmp(str[min], str[k]) > 0) {
+                min = k; 
+            }
+        }
+        // 반복문이 끝나면 temp와 정해진 index를 통해서 i번째 문자열과 min에 저장된 index의 문자열을 스왑해줌 
+        strcpy(temp, str[i]);
+        strcpy(str[i], str[min]);
+        strcpy(str[min], temp);
+    }
+}
+// 메인함수
+int main() {
+    // 문자열의 개수를 입력받을 변수 와 문자열을 저장할 2차원 그래프 생성
+    int n;
+    char str[105][105];
+    // 문자열의 개수 입력 
+    scanf("%d", &n);
+    
+    // 문자열의 개수만큼 반복문을 통해서 2차원 그래프에 순서대로 문자열을 입력
+    for (int i = 0; i < n; i ++) {
+        scanf("%s", str[i]);
+    }
+    // 만들어 놓은 sort(문자열저장한 그래프, 문자열의 개수) 함수를 사용
+    Sort(str, n); 
+    
+    // 반복문을 통해 오름차순 정렬된 문자열을 하나씩 출력 
+    for (int i = 0; i < n; i ++) {
+        printf("%s\n", str[i]);
+    }
+    return 0;
+}
