@@ -1,0 +1,36 @@
+// 함수 생성 
+def get_division(x, l): 
+  // 경우의 수를 global로 해줘서 어떤 상황에서도 더할 수 있도록함
+  global cnt
+  // 만약 data에 잇는 수의 합이 x의 값(n)과 같은 경우 재귀함수 종료
+  if sum(data) == x: 
+    // 경우의 수를 추가 
+    cnt += 1
+    // 반복문을 통해서 마지막 index에 있는 수를 제외한 나머지를 숫자 + 를 출력 마지막 index는 숫자만 출력 
+    for i in range(1, len(data)):
+      if i == len(data)-1: 
+        print(data[i])
+      else:
+        print(data[i], end="")
+        print("+", end="")
+  // 그러지 않은 경우에는 n-1 부터 반복문을 통해서 차례대로 숫자를 하나씩 집어 넣어준다
+  else:
+    for i in range(l, 0, -1):
+      // 만약 지금까지의 숫자의 합과 + i 가 x의 값(n) 보다 작거나 같은 경우에만 숫자열의 리스트에 i를 더해주고 재귀함수를 통해서 넣을수 있는 최소 숫자(l)의 범위를 줄여간다
+      if sum(data) + i <= x:
+        data.append(i) 
+        get_division(x, i)
+        // 그리고 다음 반복문에 영향을 끼치지 않기 위해서 pop을 통해서 가장 오늘쪽에 넣어진 원소 i를 제거해 준다 
+        data.pop()
+      
+
+// 함수로 부터 나올수 있는 경우의수를 저장할 변수 초기화
+cnt = 0 
+// 나누어질 수를 입력
+n = int(input())
+// 나눈수를 저장할 리스트 생성 
+data = [0] 
+// get_division함수 시작 (나눌수와, 나눌수 - 1)
+get_division(n, n-1)
+// 경우의수의 개수 출력 
+print(cnt)
