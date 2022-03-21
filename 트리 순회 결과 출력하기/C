@@ -1,0 +1,108 @@
+# include <stdio.h> 
+
+// 변하지 않는 최대값을 지정 
+const int MAX = 100;
+
+// 트리라는 구조체를 생성 
+struct Tree {
+    // 트리 구조체는 left child 랑 right child 로 이루어져 있음 
+    int left; 
+    int right; 
+};
+
+// 트리에 들어갈 수 있는 최대값으로 저장
+Tree tree[MAX];
+
+// 전위순회 함수를 생성 (x를 루트(꼭대기) 로 하는 서브 트리를 선위순회 하여 출력하는 함수)
+void preorder (int x) {
+  // 자식이 없는 루트인 경우에는 자기 자신을 출력 
+  if (tree[x].left == -1 && tree[x].right == -1) {
+    printf("%d", x); 
+  } 
+  else {
+    // 루트를 출력
+    printf("%d", x);
+    // 만약 왼쪽 노드가 있는 경우에는 왼쪽 노드를 루트로 하는 전위 순회를 재귀함수를 통해 실행 
+    if(tree[x].left != -1) {
+      preorder(tree[x].left);
+    }
+    // 만약 오른쪽 노드가 있는 경우에는 오른쪽 노드를 루트로 하는 전위 순회를 재귀함수를 통해 실행  
+    if(tree[x].right != -1) {
+      preorder(tree[x].right);
+    }
+  }
+}
+
+// 중위 순회 함수를 생성 (x를 루트(꼭대기) 로 하는 서브 트리를 중위순회 하여 출력하는 함수)
+void inorder (int x) {
+  // 자식이 없는 루트인 경우에는 자기 자신을 출력 
+  if (tree[x].left == -1 && tree[x].right == -1) {
+    printf("%d", x); 
+  } 
+  else {
+    // 만약 왼쪽 노드가 있는 경우에는 왼쪽 노드를 루트로 하는 중위 순회를 재귀함수를 통해 실행
+    if (tree[x].left != -1) {
+      inorder(tree[x].left);
+
+    }
+    // 루트를 출력
+    printf("%d", x);
+    // 만약 오른쪽 노드가 있는 경우에는 오른쪽 노드를 루트로 하는 전위 순회를 재귀함수를 통해 실행
+    if (tree[x].right != -1) {
+      inorder(tree[x].right);
+    }
+  }
+}
+
+
+// 휘위 순회 함수를 생성 (x를 루트(꼭대기) 로 하는 서브 트리를 휘위순회 하여 출력하는 함수)
+void postorder (int x) {
+  // 자식이 없는 루트인 경우에는 자기 자신을 출력 
+  if (tree[x].left == -1 && tree[x].right == -1) {
+    printf("%d", x); 
+  } 
+  else {
+    // 만약 왼쪽 노드가 있는 경우에는 왼쪽 노드를 루트로 하는 중위 순회를 재귀함수를 통해 실행
+    if(tree[x].left != -1) {
+      postorder(tree[x].left);
+    }
+    // 만약 오른쪽 노드가 있는 경우에는 오른쪽 노드를 루트로 하는 전위 순회를 재귀함수를 통해 실행
+    if(tree[x].right != -1) {
+      postorder(tree[x].right);
+    }
+    // 루트를 출력
+    printf("%d", x);
+  }
+}
+
+int main() {
+    // 노드의 개수를 입력 받을 변수 생성
+    int n; 
+    // 노드의 개수를 입력
+    scanf("%d", &n); 
+    // 이진 트리의 루트의 위치를 저장할 변수 생성 
+    int index; 
+    // 반복문을 통해서 n의 개수만큼 노드를 입력 
+    for (int i = 0; i < n; i++) {
+        // 노드 a에 왼쪽에는 b노드 오른쪽에는 c노드를 자식으로 둔다
+        int a, b, c;
+        scanf("%d %d %d",&a, &b, &c); 
+        // 이진 트리의 루트를 index 변수에 저장
+        if (i == 0) index = a; 
+        // 트리의 노드를 넣어줌 
+        tree[a].left = b;
+        tree[a].right = c;
+
+    }
+    // 노드의 전위순회를 출력
+    preorder(index);
+    printf("\n");
+    // 노드의 중위순회를 출력
+    inorder(index);
+    printf("\n");
+    // 노드의 후위순회를 출력
+    postorder(index);
+    printf("\n");
+  
+    return 0;
+}
