@@ -1,0 +1,64 @@
+# 노드를 입력할 클래스 생성
+class Node():
+    # 클래스의 구성요소는 루트, 왼쪽 자식, 오른쪽자식으로 설정 
+    def __init__(self, data, left_node, right_node):
+        self.data = data
+        self.left_node = left_node
+        self.right_node = right_node
+
+# 전위 순회 함수 시작 
+def pre_order(node):
+    # 루트를 출력해줌 
+    print(node.data, end=" ")
+    # 만약 왼쪽 자식노드가 -1 (또는 None)이 아닌경우에는 왼쪽 자식노드를 기준으로 전위 순회 재귀 함수 실행 
+    if node.left_node != -1:
+        pre_order(tree[node.left_node])
+    # 만약 오른쪽 자식노드가 -1 (또는 None)이 아닌경우에는 오른쪽 자식노드를 기준으로 전위 순회 재귀 함수 실행 
+    if node.right_node != -1:
+        pre_order(tree[node.right_node])
+
+# 중위 순회 함수 시작 
+def in_order(node):
+    # 만약 왼쪽 자식노드가 -1 (또는 None)이 아닌경우에는 왼쪽 자식노드를 기준으로 중위 순회 재귀 함수 실행 
+    if node.left_node != -1:
+        in_order(tree[node.left_node])
+    # 루트를 출력해줌
+    print(node.data, end=" ")
+     # 만약 오른쪽 자식노드가 -1 (또는 None)이 아닌경우에는 오른쪽 자식노드를 기준으로 중위 순회 재귀 함수 실행 
+    if node.right_node != -1:
+        in_order(tree[node.right_node])
+        
+# 후위 순회 함수 시작 
+def post_order(node):
+    # 만약 왼쪽 자식노드가 -1 (또는 None)이 아닌경우에는 왼쪽 자식노드를 기준으로 후위 순회 재귀 함수 실행
+    if node.left_node != -1:
+        post_order(tree[node.left_node])
+    # 만약 오른쪽 자식노드가 -1 (또는 None)이 아닌경우에는 오른쪽 자식노드를 기준으로 후위 순회 재귀 함수 실행 
+    if node.right_node != -1:
+        post_order(tree[node.right_node])
+    # 루트를 출력해줌
+    print(node.data, end=" ")
+
+# 노드의 개수를 입력 받음 
+n = int(input())
+# 트리라는 이름의 딕셔너리 폼을 생성 
+tree = {}
+# 어디서 부터 순회를 시작할지를 결정할 index 변수를 초기화 
+index = 0 
+
+# 반복문을 통해서 노드의 개수만큼 반복문 실행
+for i in range(n):
+    # 노드의 루트, 왼쪽 자식, 오른쪽 자식을 순서대로 입력 
+    data, left_node, right_node = map(int, input().split())
+    # 첫번째 노드의 루트를 index에 저장 
+    if i == 0:
+        index = data
+    # 트리라는 이름의 딕셔너리 폼에 class 노드를 순서대로 추가 
+    tree[data] = Node(data, left_node, right_node)
+
+## 결과 출력 
+pre_order(tree[index])
+print()
+in_order(tree[index])
+print()
+post_order(tree[index])
