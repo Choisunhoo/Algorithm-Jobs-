@@ -1,0 +1,16 @@
+# 만들 숫자를 입력 
+n = int(input())
+# dp 테이블 생성 
+data = [0] * (n + 1)
+# 점화식으로 계산불가능한 dp[index] 입력 
+data[1] = 1
+data[2] = 2
+data[3] = 4
+
+# 반복문을 통해 하나씩 dp테이블을 채워줌 
+for i in range(4, n+1):
+  # 점화식: i 번째 테이블은 i-1 i-2 i-3의 합을 구한 것과 같다  
+  data[i] = (data[i-1] + data[i-2] + data[i-3]) % 1000007 
+
+# 결과 출력 
+print(data[n])
