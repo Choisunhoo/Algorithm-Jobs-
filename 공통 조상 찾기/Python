@@ -1,0 +1,24 @@
+# 노드의 개수와 공통조상을 찾을 노드를 입력 
+n, x, y = map(int, input().split())
+# 부모와 확인여부를 위한 리스트 생성 
+parent = [0] * 1001 
+check = [0] * 1001
+
+# 반복문을 통해 부모 정보를 저장 
+for _ in range(n-1):
+  a, b =map(int, input().split())
+  parent[b] = a
+
+# 반복문을 통해서 확인 여부를 바꾼뒤 만약 x의 값이 루트와 같으면 반복문 종료 그렇지 않으면 x의 값을 부모의 값으로 변경 
+while True:
+  check[x] = -1
+  if (x == 0): break
+  x = parent[x]
+
+# 반복문을 통해서 y의 값이 x와 공통조상이면 결과 출력 및 반복문 종료 그렇지 않은 경우 y의 값을 부모의 값으로 변경 
+while True:
+  if check[y] == -1:
+    print(y)
+    break
+  check[y] = -1
+  y = parent[y]  
