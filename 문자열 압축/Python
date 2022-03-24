@@ -1,0 +1,19 @@
+data = list(input())
+cnt = 1
+word = data[0]
+for i in range(1, len(data)):
+    if data[i] != word:
+        if cnt != 1:
+            print(cnt,end="")
+            print(word,end="")
+        else:
+            print(word,end="")
+        cnt = 1
+        word = data[i]
+    else:
+        cnt+= 1
+if cnt != 1:
+  print(cnt,end="")
+  print(word,end="")
+else:
+  print(word,end="")
