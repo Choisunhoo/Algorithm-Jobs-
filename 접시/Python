@@ -1,0 +1,34 @@
+data = list(input())
+order = []
+check = []
+command = ["push"]
+length = len(data)
+cnt = 0 
+
+for i in data:
+    order.append(i)
+order.sort()
+order.reverse()
+data.reverse()
+check.append(order.pop())
+
+for i in range(len(data)*2 - 1):
+    if len(check) == 0 and len(order) == 0:
+        break 
+    if len(order) != 0 and len(check) == 0:
+        check.append(order.pop())
+        command.append("push")
+    if data[-1] == check[-1]:
+        data.pop()
+        check.pop()
+        command.append("pop")
+        cnt += 1
+    elif len(order) != 0: 
+        check.append(order.pop())
+        command.append("push")
+
+if cnt == length:
+    for i in command:
+        print(i)
+else:
+    print("impossible")
