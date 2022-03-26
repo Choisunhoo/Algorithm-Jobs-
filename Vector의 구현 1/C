@@ -1,0 +1,22 @@
+#include <cstdio>
+#include <vector>
+
+using namespace std; 
+
+int main() {
+  // myArray라는 백터가 칸을 10개를 가지고 있다는 뜻 
+  vector <int> myArray(10);
+
+  // 백터에 0~9까지 반복문을 통해서 숫자를 넣어줌
+  for(int i = 0; i<10; i++)
+    myArray[i] = i; 
+
+  // python 에서 append 같은 기능 push_pack (크기도 자동으로 커짐 ) 
+  myArray.push_back(10);
+
+  // push back 이후에 있는 11개의 원소를 추가 
+  for (int i = 0; i<11; i++)
+    printf("%d ",myArray[i]);
+    
+  return 0; 
+}
