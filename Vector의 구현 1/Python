@@ -1,0 +1,11 @@
+# myArray라는 리스트가 칸을 10개를 가지고 있다는 뜻 
+myArray = [0] * 10
+# 0~9까지 반복문을 통해서 숫자를 넣어줌
+for i in range (10):
+  myArray[i] = i
+#  append를 통해서 맨 오른쪽에 숫자 10을 넣어줌 (c언어에서는 vector 의 push_back) 
+myArray.append(10)
+
+// append 이후에 있는 11개의 원소를 출력 
+for i in range(11):
+  print(i, end=" ") 
