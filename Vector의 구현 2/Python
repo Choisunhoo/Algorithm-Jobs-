@@ -1,0 +1,25 @@
+# arr라는 이름의 리스트 생성 
+arr = []
+# 1, 2, 3 을 왼쪽부터 차례대로 넣어줌
+arr.append(1)
+arr.append(2)
+arr.append(3)
+
+# 리스트의 0, 1, 2 번째 index에 있는 숫자 1, 2, 3을 순서대로 출력 
+print(arr[0])
+print(arr[1])
+print(arr[2])
+
+# pop을 통해서 가장 오른쪽에 있는 3을 빼줌 
+arr.pop()
+
+# arr 리스트의 크기 출력 
+print(len(arr))
+
+# 반복문을 통해서 10번째 index까지 원소가 없는 경우 5를 추가(resize)
+for i in range(10):
+  if len(arr) < i + 1:
+    arr.append(5)
+# 반복문을 통해서 리스트의 크기만큼 원소를 순서대로 출력 
+for i in range(10):
+  print(arr[i], end=" ")
