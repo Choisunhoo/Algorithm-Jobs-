@@ -1,0 +1,34 @@
+#include <cstdio>
+#include <vector>
+
+using namespace std;
+
+int main() {
+  // arr라는 이름의 백터 선언
+  vector <int> arr; 
+
+  // 1, 2, 3 을 왼쪽부터 차례대로 넣어줌
+  arr.push_back(1);
+  arr.push_back(2);
+  arr.push_back(3);
+  
+  // 백터의 0, 1, 2 번째 index에 있는 숫자 1, 2, 3을 순서대로 출력 
+  printf("%d\n", arr[0]);
+  printf("%d\n", arr[1]);
+  printf("%d\n", arr[2]);
+
+  // pop_back을 통해서 가장 오른쪽에 있는 3을 빼줌 
+  arr.pop_back(); 
+  // arr 백터의 크기 인 2를 출력
+  printf("%d\n",arr.size()); 
+
+  // resize 함수를 통해서 1 2 5 5 5 5 5 5 5 5 로 다시 갱신
+  arr.resize(10, 5);
+
+  // 반복문을 통해서 백터의 크기만큼 원소를 순서대로 출력 
+  for (int i = 0; i<arr.size(); i++) {
+    printf("%d ", arr[i])
+  }
+  
+  return 0; 
+}
