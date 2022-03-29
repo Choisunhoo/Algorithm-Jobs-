@@ -1,0 +1,30 @@
+c ,r = map(int, input().split()) 
+k = int(input())
+graph = [[0]*c for _ in range(r)]
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+
+i = 0
+x = r-1
+y = 0
+cnt =1
+
+if c*r < k:
+    print(0)
+    exit()
+else:
+    while True:
+        if cnt == k:
+            break
+        graph[x][y] = cnt
+        nx = x + dx[i]
+        ny = y + dy[i]
+        if nx >= r or nx < 0 or ny >= c or ny<0 or graph[nx][ny] !=0:
+            if i == 3:
+                i = 0
+            else:
+                i = i + 1
+        x = x + dx[i]
+        y = y + dy[i]
+        cnt += 1
+    print(y+1, r-x)
