@@ -1,0 +1,63 @@
+# 너비 우선탐색을 위해 deque함수 를 collections 라이브러리에서 가져옴
+from collections import deque
+
+# 깊이 우선 탐색 함수 시작(노드의 정보가 저장되있는 리스트, 출력하고 싶은 노드, 방문여부 리스트)
+def dfs(data, x, dfs_visitied):
+  # 방문여부 리스트에 x를 방문으로 처리 
+  dfs_visitied[x] = True
+  # x노드를 출력 
+  print(x, end=" ")
+  # x노드와 연결되어 있는 다른노드를 반복문을 통해 확인 
+  for i in data[x]:
+    # 만약 x와 연결되어 있는 i노드가 방문이 안되어 있는 상황이라면 재귀 함수 사용 
+    if not dfs_visitied[i]:
+      dfs(data, i, dfs_visitied)
+
+# 너비 우선 탐색 함수 시작(노드의 정보가 저장되있는 리스트, 출력하고 싶은 노드, 방문여부 리스트)
+def bfs(data, x, bfs_visitied):
+  # 시작 노드를 deque을 통해서 큐에 넣어줌 
+  queue = deque([x])
+  # 시작노드를 방문처리 
+  bfs_visitied[x] = True 
+  
+  # 큐가 빌때까지 반복문 
+  while queue:
+    # num 라는 변수에 큐의 제일 오른쏙 원소를 가져옴 
+    num = queue.popleft()  
+    # 출력 
+    print(num, end=" ")
+    
+    # num과 연결되어 있는 다른 노드들을 확인 
+    for i in data[num]:
+      # 만약 연결되어 있는 노드 i가 아직 방문 전이라면 큐에 추가 후 반복 여부 변경 
+      if not bfs_visitied[i]:
+        queue.append(i)
+        bfs_visitied[i] = True 
+
+      
+# 노드의 갯수와 간선의 갯수 입력    
+n, m = map(int, input().split())
+# 노드 정보를 담을 리스트 생성 
+data = [[] for i in range(n)]
+
+# 반복문을 통해서 노드의 개수 m만큼 노드 정보를 입력 
+for _ in range(m):
+  a, b = map(int, input().split())
+  data[a].append(b)
+  data[b].append(a)
+
+# 노드 번호가 작은 순서대로 방문을 위한 정렬
+for i in range(n):
+  data[i].sort()
+  
+# 노드 방문여부를 확인할 리스트를 깊이우선탐색과 너비 우선탐색을 위해 2개 생성 
+bfs_visitied = [False] * n
+dfs_visitied = [False] * n
+
+
+# 깊이 우선탐색 함수를 통해서 노드의 순서 출력 
+dfs(data, 0, dfs_visitied)
+# 줄넘김
+print()
+# 너비 우선탐색 함수를 통해서 노드의 순서 출력 
+bfs(data, 0, bfs_visitied)
