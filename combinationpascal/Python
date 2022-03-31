@@ -1,0 +1,15 @@
+def my_factorial(n):
+    if n > 1:
+        return n * my_factorial (n-1)
+    else:
+        return 1
+
+
+n, m = map(int, input().split())
+ 
+
+a = my_factorial(n)
+b = my_factorial(m)
+c = my_factorial(n-m)
+
+print(int(a / (b * c)))
