@@ -1,0 +1,34 @@
+# 가로수 사이의 거리를 전부 구한뒤 그 거리의 최대 공약수를 구해서 가로수의 갯수를 구하는 문제   
+
+def gcd(a, b):
+    if (b == 0):
+        return a
+    else:
+        return gcd(b, a%b)
+
+# 가로수의 개수를 입력 
+n = int(input())
+# 가로수의 위치를 저장할 리스트 생성
+tree = []
+# 반복문을 통해서 가로수의 위치를 저장 
+for _ in range(n):
+    tree.append(int(input()))
+
+# 가로수 사이의 거리를 저장할 리스트 생성 
+distance = []
+
+# 반복문을 통해서 가로수 사이의 거리를 저장
+for i in range(1, n):
+    distance.append(tree[i] - tree[i-1])
+
+# 가로수의 거리의 최대 공약수를 구하기 위해 임시 변수에 저장 
+temp = distance[0]
+
+# 반복문과 함수를 통해서 가로수 사이의 거리의 최대 공약수를 저장 
+for i in distance:
+    temp = gcd(temp, i)
+
+# 나무 개수를 가장 앞에 있는 나무 - 가장 멀리 있는 나무를 최대 공약수로 나눈뒤 한개를 추가하면 값을 구하는게 가능 
+num = (tree[-1] - tree[0]) // temp + 1
+# 현재 존재하는 나무의 개수를 총 개수에 빼주고 출력  
+print(num - len(tree))
