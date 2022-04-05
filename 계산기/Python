@@ -1,0 +1,13 @@
+a = int(input())
+command = input()
+b = int(input())
+
+
+if command == "+":
+    print(a + b)
+elif command == "-":
+    print(a - b)
+elif command == "*":
+    print(a * b)
+elif command == "/":
+    print(int(a / b))
