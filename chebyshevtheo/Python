@@ -1,0 +1,31 @@
+# 에라토스테네스의 체 알고리즘을 사용하면 좋은 문제
+import math
+
+# 123456 의 2배 보다 넉넉한 250001 까지의 소수를 구함 
+prime_number = [True] * 250001 
+prime_number[0] = False
+prime_number[1] = False
+
+
+for i in range(2, int(math.sqrt(250000))+1):
+    if prime_number[i] == True:
+        j = 2 
+        while i * j  <= 250000:
+            prime_number[i * j] = False
+            j += 1
+            
+
+# 입력값이 0 일 때까지 반복문
+while True:
+    # 반복문마다 소수의 개수를 초기화
+    cnt = 0
+    # n~ n*2 까지의 소수를 위한 n입력 
+    n = int(input()
+    if n == 0:
+        break
+    # 반복문을 통해서 n+1 ~ n*2 까지 소수면 소수에 개수 변수를 추가
+    for i in range(n+1, n*2+1):
+        if prime_number[i] == True:
+            cnt += 1
+    # 반복문이 끝나기 전에 결과 출력 
+    print(cnt)
