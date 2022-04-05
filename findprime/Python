@@ -1,0 +1,32 @@
+// 제곱근을 위해서 math 라이브러리를 가져옴
+import math
+
+# 아라토스테네스의 체 알고리즘 시작
+# 소수 리스트를 다 True로 제한인 1000 만큼 생성
+prime_number = [True] * 1001
+# 0 과 1 은 소수가 아니니 False로 등록 
+prime_number[0] = [False]
+prime_number[1] = [False]
+
+# 반복문을 통해서 2부터 1001의 재곱근까지 반복문 시작 
+for i in range(2, int(math.sqrt(1001)) + 1):
+    # 만약 i 가 소수인 경우에 i * 2승부터 i * mul 이 1001 보다 작을때까지 while반복문을 통해서 곱해준후 소수가 아님을 저장
+    if prime_number[i] == True:
+        mul = 2
+        while i * mul  <= 1000:
+            prime_number[i * mul] = False 
+            mul += 1
+
+# 입력받을 숫자의 개수를 입력
+n = int(input())
+# 숫자중 소수의 개수 초기화 
+cnt = 0
+
+# 반복문을 통해서 숫자를 입력받고 소수 리스트에 넣어서 소수인 경우에는 cnt의 값 추가 
+for i in range(n):
+    number = int(input())
+    if prime_number[number] == True:
+        cnt += 1
+
+# 결과 출력 
+print(cnt)
