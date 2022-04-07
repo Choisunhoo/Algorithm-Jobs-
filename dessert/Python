@@ -1,0 +1,86 @@
+# 소들의 수를 입력
+n = int(input())
+# 결과를 출력할 리스트를 초기화 및 첫번째 숫자 1 추가 
+data = [1]
+# 총 가지수 개수 초기화 
+cnt = 0 
+
+
+# 총 가지수와 수열을 출력하는 함수 시작(냅킨의 개수, 수식의 결과, 마지막 냅킨, 마지막 냅킨에 대입한 수)
+def dessert(x, tnt, command, temp):
+    global cnt
+    # 만약 냅킨의 개수가 n개 만큼 되어있고 최종 결과가 0과 같은 경우에 총 가지수를 추가 
+    if x == n+1 and tnt == 0:
+        cnt += 1
+        # 정답의 개수가 20개 이하라면 반복문을 통해서 배치를 출력 
+        if cnt <= 20: 
+            for i in data:
+                print(i, end=" ")
+            print()
+    # 냅킨의 수가 n+1 보다 작을때 반복문을 통해서 재귀함수 호출 
+    if x < n+1:
+        # 냅킨의 종류 +, -, . 3가지이니 3개의 반복문을 순서대로 시작 
+        for i in range(3):
+            # 만약 i의 값이 0 = + 인 경우
+            if i == 0:
+                # 결과를 출력할 리스트에 + 와 x를 추가 
+                data.append("+")
+                data.append(x)
+                # 재귀함수를 통해서 냅킨의 개수 x(현재) + 1, 수식의 결과 tnt (현재값) + x, 마지막 냅킨 0 (+), 마지막 냅킨에 대입한 수 (x) 로 재귀함수 가동  
+                dessert(x+1, tnt + x, 0, x)
+                # pop를 두번 해주어서 다음 반복문에 영향이 없도록 한다
+                data.pop()
+                data.pop()
+            # 만약 i의 값이 1 = - 인 경우    
+            if i == 1:
+                # 결과를 출력할 리스트에 - 와 x를 추가
+                data.append("-")
+                data.append(x)
+                # 재귀함수를 통해서 냅킨의 개수 x(현재) + 1, 수식의 결과 tnt (현재값) - x, 마지막 냅킨 1 (-), 마지막 냅킨에 대입한 수 (x) 로 재귀함수 가동  
+                dessert(x+1, tnt - x, 1, x)
+                # pop를 두번 해주어서 다음 반복문에 영향이 없도록 한다
+                data.pop()
+                data.pop()
+            # 만약 i의 값이 2 = . 이고 마지막 냅킨이 +(0)인 경우 
+            if i == 2 and command == 0:
+                # 마지막으로 냅킨에 대입한 수를 빼줌 
+                tnt -= temp
+                # 만약 x의 값이 10보다 큰경우 temp에 100을 곱한 값과 x를 더한 수를 num이라는 변수에 임시 저장 
+                if x >= 10:
+                    num = temp * 100 + x
+                # 그외의 경우  temp에 10을 곱한 값과 x를 더한 수를 num이라는 변수에 임시 저장 
+                else:
+                    num = temp * 10 + x
+                # 마지막 수식인 + 에 num을 대입해줌 
+                tnt += num 
+                # 결과를 출력할 리스트에 . 와 x를 추가
+                data.append(".")
+                data.append(x)
+                # 재귀함수를 통해서 냅킨의 개수 x(현재) + 1, 수식의 결과 tnt, 마지막 냅킨 0 (+), 마지막 냅킨에 대입한 수 (num) 로 재귀함수 가동  
+                dessert(x+1, tnt, 0, num)
+                data.pop()
+                data.pop()
+            if i == 2 and command == 1:
+                # 마지막으로 냅킨에 대입한 수를 더해줌줌 
+                tnt += temp
+                # 만약 x의 값이 10보다 큰경우 temp에 100을 곱한 값과 x를 더한 수를 num이라는 변수에 임시 저장 
+                if x >= 10:
+                    num = temp * 100 + x
+                # 그외의 경우  temp에 10을 곱한 값과 x를 더한 수를 num이라는 변수에 임시 저장 
+                else:
+                    num = temp * 10 + x
+                # 마지막 수식인 - 에 num을 대입해줌 
+                tnt -= num 
+                # 결과를 출력할 리스트에 . 와 x를 추가
+                data.append(".")
+                data.append(x)
+                # 재귀함수를 통해서 냅킨의 개수 x(현재) + 1, 수식의 결과 tnt, 마지막 냅킨 1 (-), 마지막 냅킨에 대입한 수 (num) 로 재귀함수 가동  
+                dessert(x+1, tnt, 1, num)
+                data.pop()
+                data.pop()
+            
+
+# 함수 시작(냅킨의 개수, 수식의 결과 , 마지막 냅킨, 마지막 냅킨에 대입한 수)
+dessert(2, 1, 0, 1)
+# 총 가지수 출력 
+print(cnt)
