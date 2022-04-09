@@ -1,0 +1,55 @@
+# 벽을 하나만 부수는게 가능한 상황에서 부술수 있을때의 부신다와 부시지 않는다라는 선택지를 3차원 그래프를 통해서 해결하는 문제
+from collections import deque
+
+# 맵의 세로와 가로의 크기를 입력 받음 
+n, m = map(int, input().split())
+
+# 맵을 저장할 리스트 생성 
+graph = []
+# 반복문을 n개 만큼 반복하여 맵을 저장함 
+for _ in range(n):
+  graph.append(list(map(int, input().split())))
+  
+# 방향 백터를 생성 
+dx = [-1, 1, 0, 0]
+dy = [0, 0, 1, -1]
+
+# bfs함수를 생성
+def bfs():
+  # bfs 알고리즘을 실행할 큐를 생성 
+  queue = deque()
+  # 큐에 시작점인 n-1, 0 의 좌표 그리고 보유한 망치의 개수인 1을 넣어줌 
+  queue.append([n-1, 0, 1])
+  # 방문여부 확인을 위한 3차원 리스트를 생성 3차원 리스트는 망치가 있/ 없  // m의 개수 // n의 개수만큼 만들어줌 
+  visit= [[[0] * 2 for _ in range(m)] for _ in range(n)]
+  # 망치가 있고 시작 점의 방문 여부를 표시 
+  visit[n-1][0][1] = 1
+  
+  # while 반복문을 통해서 큐에 데이터가 남지 않을때까지 반복 
+  while queue:
+    # 큐의 제일 오른쪽에 있는 좌표값 x, y와 망치 사용여부 w 를 pop을 통해서 가져옴 
+    x, y, w = queue.popleft()
+    # 만약 좌표의 값이 도착지점인 0, m-1 인경우에는 그 좌표와 망치 개수를 저장한 방문 여부 리스트의 값을 반환
+    if x == 0 and y == m-1:
+      return visit[x][y][w]
+    # 반복문을 상, 하, 좌, 우 이렇게 4가지로 방향백터를 사용해서 이동 
+    for i in range(4):
+      nx = x + dx[i]
+      ny = y + dy[i]
+      # 만약 방향 백터로 이동한 값이 맵을 넘지 않는다면 
+      if 0 <= nx < n and 0 <= ny < m:
+        # 그리고 해당 장소가 벽이 있고 망치가 있다면 
+        if graph[nx][ny] == 1 and w == 1:
+          # 지금 현좌표에서 + 1 한 값을 방문여부 3차원 리스트에 망치가 없는 곳에 저장 
+          visit[nx][ny][0] = visit[x][y][w] + 1
+          # 그리고 dfs 함수를실행하기 위해서큐에 이동한 좌표와 망치를 사용했으니 0 을 순서 대로 넣어줌 
+          queue.append([nx, ny, 0])
+        # 만약 해당 위치가 갈수 잇는 길이고 방문된 적이 없다면 
+        elif graph[nx][ny] == 0 and visit[nx][ny][w] == 0:
+          # 현좌표에서 + 1 한 값을 방문여부 3차원 리스트에 망치에 수는 바꾸지 않고 저장 
+          visit[nx][ny][w] = visit[x][y][w] + 1
+          # 그리고 dfs 함수를실행하기 위해서큐에 이동한 좌표와 현재 망치의 수를 순서 대로 넣어줌 
+          queue.append([nx, ny, w])
+
+# 결과 출력 (시작점을 1로 햇으니 1을 빼줌)
+print(bfs()-1)
