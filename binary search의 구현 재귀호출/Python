@@ -1,0 +1,29 @@
+# binary search 구현(재귀)
+
+def binarySearch(arr, start, end, value):
+  if start > end:
+    return -1
+  elif start == end:
+    if arr[start] == value:
+      return start
+    else:
+      return -1
+  else:
+    mid = (start + end) // 2
+    if arr[mid] == value:
+      return mid
+    elif arr[mid] > value:
+      return binarySearch(arr, start, mid-1, value)
+    else:
+      return binarySearch(arr, mid+1, end, value)
+    
+n = int(input())
+arr = list(map(int, input().split()))
+m = int(input())
+
+index = binarySearch(arr, 0, n-1, m) + 1
+
+if index == -1:
+  print("수가 없습니다")
+else:
+  print(index, "번째에 숫자가 있습니다")
