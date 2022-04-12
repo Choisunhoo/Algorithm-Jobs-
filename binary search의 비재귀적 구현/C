@@ -1,0 +1,59 @@
+// binary search 구현(재귀)
+
+# include <stdio.h>
+
+// 이분탐색 함수
+int binarySearch(int arr[], int myStart, int myEnd, int value) {
+  // arr 의 start 부터 end 까지 값들 중에서
+  // value가 존재한다면 그 위치를 반환하고, 그렇지 않으면 -1 을 반환하는 함수
+  // 만약 찾으려는 원소의 값이 없는경우 -1을 반환
+
+  int start, end; 
+  int mid; 
+
+  if (arr[myStart] > value) return -1;
+  else if (arr[myStart] == value) return myStart;
+  if (arr[myEnd] < value) return myEnd; 
+  else if (arr[myStart] == value) return myEnd;
+
+  start =  myStart;
+  end = myEnd;
+
+  while(start+1 < end) {
+    mid = (start + end) / 2;
+    if (arr[mid] == value) return mid;
+    else if (arr[mid] > value) end = mid;
+    else start = mid; 
+  }
+  return -1;
+}
+
+int main() {
+
+  // arr에 저장할 원소의 개수와 binarysearch를 통해서 찾을 원소 입력
+  int n, m;
+  // 숫자열을 담을 변수 생성
+  int arr[100];
+
+  // 저장할 원소의 개수를 입력 
+  scanf("%d",&n);
+
+  // arr는 이미 정렬이 되어 있다고 가정, 반복문을 통해서 수열을 입력 
+  for (int i = 0; i < n; i++)
+    scanf("%d",&arr[i]); 
+
+  // 찾을 원소를 입력
+  scanf("%d", &m);
+
+  // 이분탐색 함수를 통해서 inx 번호를 찾음
+  int inx = binarySearch(arr, 0, n-1, m);
+  // 만약 값이 -1인 경우 숫자열안에 찾는 원소가 없다는뜻
+  if (inx == -1){
+    printf("수가 없습니다.");
+  }
+  // 그러지 않은 경우 결과값 출력
+  else {
+    printf("%d번째에 숫자가 있습니다.", inx);
+  }
+  return 0;
+}
