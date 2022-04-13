@@ -1,0 +1,24 @@
+# bisect library에서 bisect_left, bisect_right를 가져옴 
+from bisect import bisect_left, bisect_right
+
+# 함수 생성(리스트, 왼쪽, 오른쪼)
+def count_by_range(data, left, right):
+  # 오른쪽 숫자의 index를 bisect_right 함수를 통해서 구함 
+  right_index = bisect_right(data, right)
+  # 왼쪽 숫자의 index를 bisect_left 함수를 통해서 구함 
+  left_index = bisect_left(data, left)
+  # 오른쪽 숫자 index - 왼쪽 숫자 index 출력 
+  return right_index - left_index
+
+# 수열안의 원소의 개수와 개수를 셀 숫자의 개수를 입력 
+n, q = map(int, input().split())
+# 수열 입력 및 저장
+data = list(map(int, input().split()))
+# 오름차순 정렬
+data.sort()
+# 개수를 셀 숫자 입력 
+question = list(map(int, input().split()))
+
+# 반복문을 통해서 하나씩 결과 출력 
+for i in question:
+  print(count_by_range(data, i, i))
