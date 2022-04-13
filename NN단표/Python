@@ -1,0 +1,45 @@
+# n * n의 단표의 크기를 위한 n입력 
+n = int(input())
+# 몇번째 수를 찾을지 입력 
+k = int(input())
+
+# 함수 시작 
+def getOrder(x):
+  # 결과값 초기화 
+  result = 0 
+  # 반복문을 통해서 1 ~ n까지 하나씩 비교
+  for i in range(1, n+1):
+    # 만약 i * n이 x값보다 적은경우 i 의 모든 배수는 전부 x보다 작음으로 result += n 
+    if i * n < x:
+      result += n 
+    # 그렇지 않은 경우 x가 i로 나누었을대 나머지가 0이라면 x 나누기 i -1 값을 result에 추가 
+    else:
+      if x % i == 0:
+        result += (x//i) - 1
+      # 그 외의 경우에는 result 값에 x // i의 값을 추가
+      else:
+        result += x//i
+  
+  # 결과값 +1 의 값을 반환
+  return result + 1
+
+# 수의 시작값은 1 * 1 인 1 부터
+start = 1 
+# 끝값은 n * n의 +1 값까지 
+end = n * n + 1 
+
+# start +1 의 값이 end 보다 작을때 반복
+while (start + 1 < end):
+  # 중앙값 설정 
+  mid = (start + end) // 2
+  # 함수를 통해서 중앙값이 몇번째 있는지를 구함 
+  myOrder = getOrder(mid)
+  
+  # 만약 중앙값이 k값과 같거나 크다면 start는 mid의 값으로 지정 
+  if myOrder <= k:
+    start = mid
+  # 중앙값이 k값보다 적으면 end를 mid로 설정
+  else:
+    end = mid
+# 결과값 출력 
+print(start)
