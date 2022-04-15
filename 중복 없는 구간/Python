@@ -1,0 +1,60 @@
+# 숫자의 개수 입력 
+n = int(input())
+# data 리스트에 수열을 저장 
+data = list(map(int, input().split()))
+
+# 시작점의 최초값은 최소값인 1
+start = 1 
+# 끝점은 최대값인 end 
+end = n
+# 결과값을 1로 초기화
+result = 1
+
+# 시작점이 끝점보다 커질대까지 이진탐색을 반복문을통해서 실행 
+while start <= end:
+    # 중간값은 시작값과 끝값을 2로 나눈수 
+    mid = (start + end) // 2
+    # 중복확인 여부를 위한 리스트 초기화 
+    check = [0] * (n+1)
+    # 중복된 개수를 확인할 변수 초기화
+    answer = 0
+    # 인텍스 초기화
+    index = -1
+    # 반복문을 통해서 0~mid-1 데이터 인덱스 값을 추가
+    for i in range(mid-1):
+      check[data[i]] += 1
+      # 만약 중복인경우에 결과값을 하나 추가
+      if check[data[i]] == 2:
+        answer += 1
+    # 반복문을 통해서 한개씩 넣어줌 
+    for i in range(mid-1, n):
+      check[data[i]] += 1
+      # 인덱스를 추가
+      index += 1
+      # 만약 중복이 확인되면 중복여부 변수에 1을 추가
+      if check[data[i]] == 2:
+        answer += 1
+      # 중복여부 변수가 0 일경우 반복문 종료
+      if answer == 0:
+        break
+      # 0이 아닐경우 인덱스의 변수의 중복확인 여부를 하나 빼주고 
+      check[data[index]] -= 1
+      # 중복에서 > 중복이 아닌경우로 변한경우 마지막 번째 반복문을 제외하고 결과 변수에 1을 빼줌
+      if i != n-1 and check[data[index]] == 1:
+        answer -= 1 
+    # 만약 결과 변수가 0 (중복이 없다면) 
+    if answer == 0:
+      # 결과값을 mid로 저장
+      result = mid 
+      # 다음 이진탐색을 위해 시작값을 mid +1 값으로 변환
+      start = mid + 1
+    # 그외의 경우
+    else:
+      # 끝값을 mid - 1 로 변환후 이진탐색 실행
+      end = mid - 1
+
+# 저장된 결과 값 출력
+print(result)            
+
+
+
