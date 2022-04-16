@@ -1,0 +1,27 @@
+# a =  x * x + x 
+# a를 만족하는 x의 값을 찾기위해 a를 입력 
+a = int(input())
+
+# 이진탐색의 시작값과 끝값 그리고 결과 값을 지정 및 초기화
+start = 1 
+end = a 
+answer = 0 
+
+# while 반복문을 통해서 시작값이 끝값보다 커질때까지 반복 
+while start <= end:
+    # 중간값은 start와 end를 2로 나눈 수 
+    mid = (start + end) // 2
+    # 만약 mid(x)의 x * x + x 값이 a와 같다면 반복문 종료 및 결과 출력
+    if mid * mid + mid == a:
+        answer = mid
+        break 
+    # 약 mid(x)의 x * x + x 값이 a의 값보다 작다면 mid를 정답 변수에 저장 및 시작 값을 변경 
+    elif mid * mid + mid < a:
+        start = mid + 1 
+        answer = mid 
+    # 약 mid(x)의 x * x + x 값이 a의 값보다 작다면 끝 값을 변경 
+    elif mid * mid + mid > a:
+        end = mid - 1
+
+# 결과 출력 
+print(answer)
