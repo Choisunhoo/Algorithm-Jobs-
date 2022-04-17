@@ -1,0 +1,22 @@
+n = int(input())
+data = list(map(int, input().split()))
+data.sort()
+
+start = 0
+end = n - 1
+
+answer = 1000000020 
+
+while start < end:
+  check = data[start] + data[end]
+  if abs(check) < answer:
+    answer = abs(check)
+    a = data[start]
+    b = data[end]
+    
+  if check < 0:
+    start += 1 
+  else:
+    end -= 1
+
+print(a, b)
