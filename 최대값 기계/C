@@ -1,0 +1,56 @@
+// 최대값 기계 
+
+# include <stdio.h>
+
+struct maxMachine {
+  int data[100];
+  int len = 0;
+
+  void insertNumber(int x) {
+    data[len++] = x;
+  }
+
+  void removeNumber(int x){
+    for (int i = 0; i < len; i++) {
+      if (data[i] == x) {
+        for(int j = i; j < len; j++) {
+          data[j] = data[j+1];
+        }
+        len --; 
+        
+        return; 
+      }
+    }
+  }
+
+  int getMax() {
+    int myMax = -979797979;
+    for (int i = 0; i < len; i ++) {
+      if(data[i] > myMax) {
+        myMax = data[i]; 
+      }
+    }
+    return myMax;
+  }
+};
+
+int main() {
+  maxMachine m1; 
+
+  m1.insertNumber(10);
+  m1.insertNumber(20);
+  m1.insertNumber(5);
+  m1.insertNumber(30);
+
+  printf("%d\n", m1.getMax()); // 최대값인 30 출력 
+
+  m1.removeNumber(30);
+  m1.removeNumber(10);
+  
+  printf("%d\n", m1.getMax()); // 최대값인 20 출력
+
+  m1.removeNumber(20);
+
+  printf("%d\n", m1.getMax()); // 최대값인 5 출력
+  return 0;
+}
