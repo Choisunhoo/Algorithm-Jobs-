@@ -1,0 +1,29 @@
+# include <stdio.h>
+
+// point라는 타입의 구조체 생성
+struct Point{
+  // 사용될 변수 x와 y 생성 
+  int x; 
+  int y;
+
+  // getSum 이라는 x와 y의 값을 더하는 함수를 생성 
+  int getSum(){
+    return x + y;
+  }
+};
+
+int main () {
+  Point p1, p2; 
+
+  p1.x = 1;
+  p1.y = 2; 
+
+  p2.x = 3;
+  p2.y = 4;
+
+  // p1의 getSum 과 p2의 getSum 함수의 값을 출력
+  printf("%d\n",p1.getSum());
+  printf("%d\n",p2.getSum());
+  
+  return 0;
+}
