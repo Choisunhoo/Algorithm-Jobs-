@@ -1,0 +1,28 @@
+# 스텍을 활용해서 시간 복잡도를 줄인 코드 
+
+# 탑의 개수를 입력
+n = int(input())
+# 탑의 높이를 입력 
+data = list(map(int,input().split()))
+# 결과값을 전부 0으로 초기화
+answer = [0] * n
+# 타워를 넣을 스택을 생성 
+stack = []
+
+# 반복문을 통해서 정답을 구해줌
+for i in range(n):
+  # 타워의 길이를 변수에 저장 
+  tower = data[i]
+  # 스텍이 있고 타워의 길이가 stack에 맨 오른쪽에 저장되어 있는 숫자보다 클때 while 반복문
+  while stack and data[stack[-1]] < tower:
+    # 더 큰수는 pop함수를 통해서 삭제 
+    stack.pop()
+  # 만약 반복문이 끝나고 스텍에 데이터가 있는 상태라면 stack에 제일 오른쪽에 있는 수는 타워의 높이를 저장한 변수보다 큰값(높이가 높음으로) 임으로 결과 값을 저장 
+  if stack:
+    answer[i] = stack[-1] + 1
+  # 그 후 다음 타워에 비교하기 위해서 stack에 현재 index인 i값을 추가 
+  stack.append(i)
+
+# 반복문을 통해서 결과 출력
+for i in answer:
+  print(i, end=" ")
