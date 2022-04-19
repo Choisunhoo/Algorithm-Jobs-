@@ -1,0 +1,47 @@
+# 구간의 개수를 입력
+n = int(input())
+# 시작값과 끝 값 그리고 구간을 저장할 리스트 초기화
+start = 1000000001
+end = 0
+data = []
+# 반복문을 통해 n개만큼 구간을 입력 및 저장후 시작값과 끝값을 갱신 
+for _ in range(n):
+  x, y = map(int, input().split())
+  data.append((x, y))
+  start = min(start, x)
+  end = max(end, y)
+
+# 알고 싶은 숫자의 수를 입력 
+index = int(input()) 
+# 결과 값 초기화 
+result = 0 
+
+# 시작값이 끝값보다 클때까지 반복문 
+while start <= end:
+  # 중간값은 시작값과 끝값을 더한 값을 2로 나눈 값 
+  mid = (start + end) // 2
+  # 중간값 전까지의 숫자 개수를 저장할 변수 초기화
+  tnt = 0 
+  # 반복문을 통해서 중간값 전까지의 숫자를 변수에 추가
+  for i in range(n):
+    # 만약 구간의 끝값이 중간값보다 작은경우
+    if data[i][1] < mid:
+      # 모든 수의 개수를 변수에 저장 
+      tnt += data[i][1] - data[i][0] + 1
+    # 만약 구간의 시작값이 중간값보다 작은경우 중간값에서 시작값을 뺀 수만큼 변수에 저장
+    elif data[i][0] <= mid:
+      tnt += mid - data[i][0]
+  # 만약 변수의 값이 알고싶은 숫자의 수와 같다면 결과 값을 중간값으로 저장후 반복문 종료
+  if tnt == index:
+    result = mid
+    break 
+  # 만약 변수의 값이 알고싶은 숫자의 수보다 적다면 결과값을 임시적으로 중간값으로 저장한뒤 시작점을 중간값 + 1 로 변경
+  elif tnt < index:
+    result = mid 
+    start = mid + 1
+  # 그 외의 변수값이 알고 싶은 숫자보다 큰 경우에는 끝값을 중간값 - 1로 변경후 이분탐색 
+  else:
+    end = mid - 1
+
+# 결과 출력 
+print(result)
