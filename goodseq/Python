@@ -1,0 +1,29 @@
+# 백트래킹 함수(수열의 길이)
+def backtracking(cnt):
+    # 나쁜 수열은 최대 수열의 길이의 반절이니 반절까지 반복문
+    for i in range(1, cnt//2 + 1):
+        # 만약 [-i:] (뒤에서부터 i의 개수까지의 수열이 ex) data = [1, 2, 3, 4, 5] i = 2  data[-i:]  = 4, 5 
+        # [-2 * i: -i] -i * 2 ~ -i 까지  data = [1, 2, 3, 4, 5] i = 2  data[-i * 2 : -i]  = 2, 3
+        # 같다면 -1 (False를) 반환 
+    if data[-i:] == data[-2 * i: -i]:
+            return -1 
+    # 만약 수열의 길이가 입력한 값과 같아지면 반복문을 통해서 결과를 출력후 0 을 반환
+    if cnt == n:
+        for i in data:
+            print(i, end="")
+        return 0
+    # 반복문을 통해서 1~3까지 차례대로 넣으면서 백트래킹을 함 
+    for i in range(1, 4):
+        data.append(i)
+        if backtracking(cnt + 1) == 0:
+            return 0
+        # 한개 넣은후 백트래킹이끝날때 마다 pop을 통해 다음 반복문을 준비 
+        data.pop()
+               
+              
+# 수열의 길이를 입력 
+n = int(input())
+# 수열을 담을 변수 리스트 생성
+data = [] 
+# 백트래킹 함수를 통해 결과 출력
+backtracking(0)
