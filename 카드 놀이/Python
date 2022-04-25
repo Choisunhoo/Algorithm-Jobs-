@@ -1,0 +1,35 @@
+# 카드의 개수를 입력 
+n = int(input())
+# 카드의 있는 숫자를 입력 
+data = list(map(int, input().split()))
+
+# 만약 n 이 1, 2, 3일 경우 기저조건만 생성
+if n == 1: 
+    dp = [0] * (n+1)
+    dp[1] = data[0]
+elif n == 2:
+    dp = [0] * (n+1)
+    dp[1] = data[0]
+    dp[2] = data[1] + data[0]
+elif n == 3:
+    # 기저조건 dp테이블을 n+1개 만큼 생성
+    dp = [0] * (n+1)
+    # 첫번째 dp는 data의 첫번째 수와 동일 
+    dp[1] = data[0]
+    # 두번째는 dp 테이블의 첫번째와 두번째 수를 더한 값
+    dp[2] = data[1] + data[0]
+    # 세번째 dp 테이블은 첫번째와 두번째를 더한 수, 두번째와 세번째를 더한 수, 첫번째와 세번째를 더한 수중에서 가장큰 수로 저장 
+    dp[3] = max(dp[2], data[0] + data[2], data[1] + data[2]) 
+# n이 4이상인경우에는 기저 조건및 반복문을 통해서 dp테이블을 저장 
+else:
+    dp = [0] * (n+1)
+    dp[1] = data[0]
+    dp[2] = data[1] + data[0]
+    dp[3] = max(dp[2], data[0] + data[2], data[1] + data[2]) 
+    
+    # 반복문을 통해서 dp[i]번째는 이보다 3번더 적은 dp테이블에 data i-1 과 i번째를 더한 값, 이보다 2번적은 dp테이블에 수 + i-1의 값을 더한 값, 아니면i-1번째이 있는 dp 테이블의 값중에서 제일 큰 값을 저장
+    for i in range(4, n+1):
+        dp[i] = max(dp[i-3] + data[i-2] + data[i-1], dp[i-2] + data[i-1], dp[i-1]) 
+
+# dp테이블에 저장되어 있는 결과 출력 
+print(dp[n])
