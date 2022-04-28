@@ -1,0 +1,19 @@
+word = list(input())
+
+n = len(word)
+
+dp = [[0] * n for _ in range(n)]
+
+for i in range(n-1):
+    if word[i] != word[i+1]:
+        dp[i][i+1] = 1
+
+
+for x in range(2, n):
+    for i in range(0, n-x): 
+        if word[i] == word[i+x]:
+            dp[i][i+x] = dp[i+1][i+x-1]
+        else: 
+            dp[i][i+x] = min(dp[i+1][i+x], dp[i][i+x-1]) + 1
+            
+print(dp[0][n-1])
