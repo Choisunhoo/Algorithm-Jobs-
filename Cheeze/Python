@@ -1,0 +1,70 @@
+# bfs를 위해 deque를 가져옴 
+import sys 
+from collections import deque
+input = sys.stdin.readline
+
+# bfs 함수 시작 
+def bfs():
+    # 생성및 치즈가 있을 수 없는 공간중 하나인 0, 0를 큐에 넣어줌
+    # 사실 이부분은 0, 0 뿐만아니라 0~n, 0 혹은 0, 0~m 이면 아무거나 가능 
+    q = deque([(0, 0)])
+    # 공기와 닿아서 녹일 치즈를 저장할 큐 생성 
+    melt = deque([])
+    # 큐에 원소가 없을때까지 반복문 반복 
+    while q:
+        # x,y 좌표를 큐에서 팝을 해서 가져옴
+        x, y = q.popleft()
+        # 4번의 반복문을 통해 모든 방향백터를 사용 
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            # 방문하지 않고 주어진 가로 세로 안에 있으면 
+            if 0 <= nx < n and 0 <= ny < m and not visited[nx][ny]:
+                # 방문 여부를 체크
+                visited[nx][ny] = 1
+                # 만약 공기인 경우 
+                if cheese[nx][ny] == 0:
+                    # 다음 반복문을 위해 큐에 넣어줌
+                    q.append((nx, ny))
+                # 만약 치즈인 경우 녹은 치즈 리스트에 넣어줌 
+                if cheese[nx][ny] == 1:
+                    melt.append((nx, ny))
+    # 반복문을 통해서 녹은 치즈를 한번에 녹여줌 
+    for x, y in melt:
+        cheese[x][y] = 0 
+    # 녹인 치즈의 값을 반환 
+    return len(melt)
+
+# 치즈를 넣을 판의 세로와 가로의 길이를 입력 
+n, m = map(int, input().split())
+# cheese라는 2차원 리스트에 치즈의 정보 입력 
+cheese = [list(map(int, input().split())) for _ in range(n)]
+
+# 치즈의 개수를 저장
+tnt = 0
+for i in range(n):
+    tnt += sum(cheese[i])
+    
+# 방향백터 설정 
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
+
+# 치즈가 몇시간 녹였는지를 저장할 변수 초기화 
+cnt = 1 
+# while 반복문을 통해서 치즈가 사라질 때까지 반복
+while True:
+    # 방문여부 2차원 리스트 초기화
+    visited = [[0] * m for _ in range(n)]
+    # bfs()함수를 통해서 제거한 (공기에 닿은) 치즈의 개수를 저장 
+    melted = bfs()
+    # 전체 치즈 개수에 공기에 닿은 치즈를 제거 
+    tnt -= melted
+    # 만약 치즈가 더 이상 없다면 반복문 종료
+    if tnt == 0:
+        break
+    # 그 외의경우 치즈가 녹는 시간을 추가 
+    cnt += 1
+
+# 치즈가 녹아서 없어지는 시간과 녹기 한시간전에 이미 저장된 치즈 조각을 출력 
+print(cnt)
+print(melted)
