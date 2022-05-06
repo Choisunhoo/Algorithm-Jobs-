@@ -1,0 +1,52 @@
+from collections import deque
+
+
+m, n, h = map(int, input().split())
+graph = []
+queue = deque()
+for i in range(h):
+    tmp = []
+    for j in range(n):
+        tmp.append(list(map(int, input().split())))
+        for k in range(m):
+            if tmp[j][k] == 1:
+                queue.append([i, j, k])
+    graph.append(tmp)
+
+
+def bfs():
+    dx = [1, -1, 0, 0, 0, 0]
+    dy = [0, 0, 1, -1, 0, 0]
+    dz = [0, 0, 0, 0, 1, -1]
+    
+    while queue:
+        x, y, z = queue.popleft()
+        
+        for i in range(6):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            nz = z + dz[i]
+            if 0 <= nx < h and 0 <= ny < n and 0 <= nz < m:
+                if graph[nx][ny][nz] == 0:
+                    queue.append([nx, ny, nz])
+                    graph[nx][ny][nz] = graph[x][y][z] + 1
+
+
+bfs()
+
+day = 0
+check = 0
+
+for i in range(h):
+    for j in range(n):
+        for k in range(m):
+            if graph[i][j][k] == 0:
+                check = 1
+            day = max(day, graph[i][j][k])
+
+print(graph)
+
+if check == 1:
+    print(-1)
+else:
+    print(day-1)
