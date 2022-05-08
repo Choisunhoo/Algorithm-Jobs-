@@ -1,0 +1,71 @@
+from collections import deque
+import copy
+import sys 
+input = sys.stdin.readline
+
+n, m = map(int, input().split())
+graph_original = [list(map(int, input().split())) for i in range(n)]
+
+dx = [1, -1, 0, 0]
+dy = [0, 0, -1, 1]
+
+result = 0 
+
+def melt(graph_original):
+    graph_copy = copy.deepcopy(graph_original)
+    
+    for x in range(1, n-1):
+        for y in range(1, m-1):
+            water = 0
+            if graph_original[x][y] > 0:
+                for i in range(4):
+                    nx =  x + dx[i]
+                    ny = y + dy[i]
+                    if 0 <= nx < n and 0 <= ny < m:
+                        if graph_original[nx][ny] == 0:
+                            water += 1
+                
+                if graph_original[x][y] - water <= 0:
+                    graph_copy[x][y] = 0
+                elif graph_original[x][y] - water > 0:
+                    graph_copy[x][y] = graph_original[x][y] - water
+                    
+    return graph_copy
+
+def bfs(x1, y1):
+    queue = deque()
+    queue.append([x1, y1])
+    check[x1][y1] = -1
+    
+    while queue:
+        x, y = queue.popleft()
+        
+        for i in range(4):
+            nx =  x + dx[i]
+            ny = y + dy[i]
+            if 0 <= nx < n and 0 <= ny < m:
+                if check[nx][ny] == 0 and graph_temp[nx][ny] != 0:
+                    check[nx][ny] = -1
+                    queue.append([nx, ny])
+
+while True:
+    result += 1 
+    cnt = 0 
+    check = [[0] * m for _ in range(n)]
+    
+    graph_temp = melt(graph_original)
+    
+    for i in range(1, n-1):
+        for j in range(1, m-1):
+            if graph_temp[i][j] > 0 and check[i][j] == 0:
+                bfs(i, j)
+                cnt += 1 
+    
+    graph_original = copy.deepcopy(graph_temp)
+    
+    if cnt >= 2:
+        print(result)
+        break
+    elif cnt == 0:
+        print(0)
+        break        
