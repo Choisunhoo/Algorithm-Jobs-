@@ -1,0 +1,30 @@
+import sys
+sys.stdin.readline 
+
+T = int(input())
+
+for Test_number in range(T):
+    result = 0 
+    n = int(input())
+    data = [] 
+    for _ in range(n):
+        data.append(list(map(int, input().split())))
+    
+    for i in range(1, n-1):
+        numbers = []
+        for j in range(n):
+            if data[i][j] not in numbers:
+                numbers.append(data[i][j])
+        for x in range(1, n-1):
+            cnt = 0
+            for y in range(n):
+                if data[y][x] not in numbers:
+                    numbers.append(data[y][x]) 
+                    cnt += 1 
+            result = max(result, sum(numbers))
+            for _ in range(cnt):
+                numbers.pop()
+
+    print("#", end="")
+    print(Test_number+1, end=" ")
+    print(result)
