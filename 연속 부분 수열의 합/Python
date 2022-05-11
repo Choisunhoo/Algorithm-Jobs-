@@ -1,0 +1,14 @@
+n, k = map(int, input().split())
+data = list(map(int, input().split()))
+
+value = sum(data[:k])
+max_value = value
+
+for i in range(k, n):
+    value += data[i]
+    value -= data[i-k]
+    
+    if value > max_value:
+        max_value = value
+
+print(max_value)
