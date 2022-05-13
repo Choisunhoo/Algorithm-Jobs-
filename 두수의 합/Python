@@ -1,0 +1,22 @@
+n, m = map(int, input().split())
+data = list(map(int, input().split()))
+data.sort()
+
+start = 0 
+end = n - 1
+cnt = 0
+
+
+while True:
+    if start == end:
+        break 
+    sum = data[start] + data[end]
+    if sum == m:
+        cnt += 1
+        start += 1
+    elif sum > m:
+        end -= 1 
+    elif sum < m:
+        start += 1
+        
+print(cnt)
