@@ -1,0 +1,48 @@
+# 정말많은 수열의 개수로 인해서 시간복잡도를 줄이는 것이 제일 중요한 문제였다. 
+
+# 수열안에 있는 수의 개수와 부분수열의 합을 입력
+n, m = map(int, input().split())
+
+# data라는 리스트를 통해서 수열정보를 입력 
+data = list(map(int, input().split()))
+
+# 부분합을 구할 dp테이블인 prefix_data라는 이름의 리스트를 n + 1개 만큼 생성 
+prefix_data = [0] * (n + 1)
+# 첫번째원소의 부분합은 수열정보에 입력된 첫번째 순서와 같으니 저장 
+prefix_data[0] = data[0]
+# 시간 복잡도를 줄이기 위해서 딕셔너리를 이용해서 부분합을 저장 
+dic = {prefix_data[0]:1}
+#  합이 k가 되는 부분수열의 개수를 초기화
+if prefix_data[0] == m:
+  cnt = 1
+else:
+  cnt = 0
+
+
+# 반복문 시작 
+for i in range(1, n):
+    # 1~i번 까지는 prefix_data에 저장된 i-1 번째의 값 + 수열의 i번째 값
+    prefix_data[i] = prefix_data[i-1] + data[i]
+    # 만약 1~i번째 까지의 부분 수열이 k값과 같은 경우 결과값 추가 및 지금까지의 필요한 부분수열은 0 이라고 지정 
+    if prefix_data[i] == m:
+        needs = 0 
+        cnt += 1
+    # 그외에는 지금까지 필요한 부분 수열은 1~i까지의 부분 수열 - k의 값 
+    else: 
+        needs = prefix_data[i] - m
+    
+    # 만약 필요한 부분수열의 값이 없는 경우 변화 없음 
+    if needs not in dic:
+        cnt += 0
+    # 아닌 경우 딕셔너리에 저장된 부분수열의 개수만큼 결과 값에 추가 
+    else:
+        cnt += dic.get(needs)
+    
+    # 만약 1~i까지의 부분 수열의 값이 딕셔너리에 없는 경우에는 딕셔너리에 추가 
+    if prefix_data[i] not in dic:
+        dic[prefix_data[i]] = 1 
+    # 있는 경우에는 해당 key 값의 value를 추가해줌 
+    else:
+        dic[prefix_data[i]] += 1 
+
+print(cnt)
