@@ -1,0 +1,36 @@
+# 전장속으로 - B
+
+# 맵의 크기를 입력 
+n = int(input())
+# 맵을 저장할 리스트 생성 
+graph = [] 
+target = []
+
+# n번 만큼 반복문을 통해서 맵의 정보를 입력
+for i in range(n):
+    # i번째 줄의 맵의 정보를 입력 
+    data = list(map(int, input().split()))
+    # 맵의 길이만큼 반복문 실행 
+    for j in range(len(data)):
+        # 만약 저장된 최소값보다 작은 경우
+        if data[j] == 9:
+            x = i 
+            y = j
+        if 0 < data[j] < 9:
+            target.append([i, j])
+    # 맵의 정보를 추가
+    graph.append(data)
+
+# 낙하지점을 *로 바꿔줌 
+graph[x][y] = "*"
+
+# 타겟으로 저장된 리스트에서 타겟의 거리를 설정한뒤 갱신해줌
+for location in target:
+    distance = abs(location[0] - x) + abs(location[1] - y)
+    graph[location[0]][location[1]] = distance
+
+# 결과를 출력 
+for i in range(n):
+    for j in range(n):
+        print(graph[i][j], end=" ")
+    print()
