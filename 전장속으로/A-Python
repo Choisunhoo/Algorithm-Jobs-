@@ -1,0 +1,27 @@
+# 전장속으로 - A 
+
+# 맵의 크기를 입력 
+n = int(input())
+# 맵을 저장할 리스트 생성 
+graph = [] 
+# 최소값과 최소값이 있는 좌표를 초기화
+min_num = 10001 
+x, y = -1, -1
+
+# n번 만큼 반복문을 통해서 맵의 정보를 입력
+for i in range(n):
+    # i번째 줄의 맵의 정보를 입력 
+    data = list(map(int, input().split()))
+    # 맵의 길이만큼 반복문 실행 
+    for j in range(len(data)):
+        # 만약 저장된 최소값보다 작은 경우
+        if data[j] < min_num:
+            # 최소값과 좌표를 저장해줌
+            min_num = data[j]
+            x = i + 1 
+            y = j + 1 
+    # 맵의 정보를 추가
+    data.append(graph)
+
+# 결과 값 출력 
+print(x, y)
