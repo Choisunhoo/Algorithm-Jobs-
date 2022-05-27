@@ -15,7 +15,7 @@ for i in range(n):
     # 맵의 길이만큼 반복문 실행 
     for j in range(len(data)):
         # 만약 저장된 최소값보다 작은 경우
-        if data[j] < min_num:
+        if 0 < data[j] < min_num:
             # 최소값과 좌표를 저장해줌
             min_num = data[j]
             x = i + 1 
