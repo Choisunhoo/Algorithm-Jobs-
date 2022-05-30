@@ -1,0 +1,109 @@
+# 전장속으로 - C
+
+from collections import deque
+import sys 
+input = sys.stdin.readline
+
+# 전장의 크기와 레벨을 입력 
+n, k = map(int, input().split())
+
+# 전장을 기록할 리스트 생성
+graph = []
+
+# 적의 위치를 저장할 리스트 생성 (나중에 도달하지 못하는 곳을 X 표시하기 위해서)
+target = []
+
+# n번만큼 반복문을 통해서 전장 정보를 저장 
+for i in range(n):
+    
+    # data에 i번째 줄의 전장 정보를 입력 
+    data = list(map(int, input().split()))
+    
+    # 반복문을 통해서 적의 위치와 낙하 위치를 찾아주고 저장
+    for j in range(n):
+        # 1~8 까지는 적 임으로 target 리스트에 저장   
+        if 0 < data[j] < 9 :
+            target.append((i, j))
+            
+        # 9 인경우에는 낙하 좌표를 x와 y로 저장 
+        elif data[j] == 9:
+            x, y = i, j
+            
+    # 전장의 정보를 저장 
+    graph.append(data)
+
+# bfs에 사용할 방문여부 리스트 생성
+check_graph = [[0] * n for _ in range(n)]
+
+# bfs함수(전장 정보, 낙하 좌표, 방문여부 리스트)
+def bfs(graph, x, y, check_graph):
+    # 큐를 생성해줌
+    queue = deque()
+    
+    # 큐에 첫번째 낙하 위치를 저장해줌
+    queue.append((x, y))
+    
+    # 전장 정보를 저장한 리스트에 낙하 위치를 *로 바꿔줌 
+    graph[x][y] = "*"
+    
+    # 낙하 위치를 방문 확인으로 바꿔줌
+    check_graph[x][y] = 1
+    
+    # 방행백터 입력
+    dx = [-1, 1, 0, 0]
+    dy = [0, 0, -1, 1]
+    
+    # queue 에 원소가 있는경우에 반복
+    while queue: 
+        x, y = queue.popleft()
+        
+        # 현재 위치에서 4가지 방향으로 위치 확인 
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            # 전장 이외의 범위인 경우 무시
+            if 0 <= nx < n and 0 <= ny < n and check_graph[nx][ny] == 0:
+                # 만약 타겟이 자신의 레벨보다 낮은 경우 
+                if 0 < graph[nx][ny] < k:
+                    # 그래프의 위치정보를 갱신 
+                    graph[nx][ny] = check_graph[x][y]
+                    # 방문여부를 갱신
+                    check_graph[nx][ny] = check_graph[x][y] + 1 
+                    # 큐에 넣어줌 
+                    queue.append((nx, ny))
+                    
+                # 타겟이 자신의 레벨과 같은 경우
+                elif graph[nx][ny] == k:
+                    # 지나갈수 있다는 . 로 표시
+                    graph[nx][ny] = "."
+                    # 방문여부 갱신
+                    check_graph[nx][ny] = check_graph[x][y] + 1 
+                    # 큐에 넣어줌
+                    queue.append((nx, ny))
+                
+                # 타겟이 자신보다 레벨이 높은 경우
+                elif graph[nx][ny] > k:
+                    # 갈수 없다는 X 로 표시 
+                    graph[nx][ny] = "X"
+                    # 방문여부 갱신
+                    check_graph[nx][ny] = check_graph[x][y] + 1 
+                # 그외의 장소
+                elif graph[nx][ny] == 0:
+                    # 방문여부 갱신
+                    check_graph[nx][ny] = check_graph[x][y] + 1 
+                    # 큐에 넣어줌
+                    queue.append((nx, ny))
+
+# bfs 함수 실행 
+bfs(graph, x, y, check_graph)
+
+# 타겟의 위치정보를 가져와서  bfs 함수 이후에도 방문한 적이 없다면 -1로 바꿔줌 
+for location in target:
+    if check_graph[location[0]][location[1]] == 0:
+        graph[location[0]][location[1]] = -1
+
+# 결과 출력 
+for i in range(n):
+    for j in range(n):
+        print(graph[i][j], end=" ")
+    print()
