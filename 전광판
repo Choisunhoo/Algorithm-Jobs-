@@ -1,0 +1,33 @@
+from collections import deque
+
+def solution(n, s, t):
+    s = list(s)
+    result = str()
+    queue = deque()
+
+    data = []
+
+    for _ in range(n):
+        data.append(".")
+        queue.append(".")
+
+    for i in range(len(s)):
+        data.append(s[i])
+
+    cnt = 1 
+    index = n 
+
+    while cnt != t:
+        cnt += 1 
+        index += 1 
+        if index == len(data):
+            index = 0 
+
+        queue.popleft()
+        queue.append(data[index])
+
+
+    for alpha in queue:
+        result += alpha
+
+    return result
