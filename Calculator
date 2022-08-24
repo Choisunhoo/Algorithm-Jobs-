@@ -1,0 +1,26 @@
+def solution(s):
+    operator = ["+", "-"]
+
+    result = 0 
+
+    s = list(s)
+    num = "0"
+    arithmetic_operator = "+"
+
+    for i in range(len(s)):
+        if s[i] in operator:
+            if arithmetic_operator == "+":
+                result += int(num) 
+            else:
+                result -= int(num)
+            arithmetic_operator = s[i]
+            num = str()
+        else:
+            num += s[i]
+
+    if arithmetic_operator == "+":
+        result += int(num) 
+    else:
+        result -= int(num)
+
+    return result
