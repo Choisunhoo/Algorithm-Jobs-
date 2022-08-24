@@ -1,0 +1,3 @@
+def solution(usageArr, fee):
+    usage = sum(usageArr)
+    return usage * fee
