@@ -1,0 +1,10 @@
+def solution(arr, Num):
+    data = []
+
+    for i in range(len(arr)):
+        for j in range(len(arr[0])):
+            data.append(arr[i][j])
+
+    data.sort()
+
+    return data[Num-1] 
