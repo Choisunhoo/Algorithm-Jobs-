@@ -1,0 +1,21 @@
+def solution(arr):
+    check = False
+    data = []
+
+    for i in range(len(arr)):
+
+        if arr[i] % 2 == 1:
+            data.append(arr[i])
+            if len(data) == len(arr):
+                break 
+            else:
+                data.append(arr[i])
+        else: 
+            data.append(arr[i])
+
+        if len(data) == len(arr):
+            break 
+
+
+
+    return data
