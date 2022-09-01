@@ -1,0 +1,22 @@
+def solution(n):
+    result = 0 
+
+    while True:
+        if len(n) == 1:
+            result = n[0]
+            break 
+        elif len(n)== 0:
+            result = 0
+            break
+
+        n.sort()
+        x = n.pop()
+        y = n.pop()
+
+        if x > y:
+            num = x - y
+            n.append(num) 
+
+
+
+    return result   
