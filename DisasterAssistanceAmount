@@ -1,0 +1,8 @@
+import math
+def solution(arr):
+    arr.sort()
+
+    result = (sum(arr) - arr[0] - arr[len(arr)-1]) / (len(arr) - 2)
+    result = math.floor(result)
+
+    return result
