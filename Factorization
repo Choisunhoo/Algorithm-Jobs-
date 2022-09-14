@@ -1,0 +1,26 @@
+def factorization(x):
+    d = 2 
+    array = []
+
+    while d <= x:
+        if x % d == 0:
+            array.append(d)
+            x = x / d
+        else:
+            d = d + 1
+
+    array = set(array)
+    array = list(array)        
+    return array
+
+def solution(A, B):
+
+    data_A = factorization(A)
+    data_B = factorization(B)
+    answer = 0 
+    if data_A == data_B:
+        answer = 1
+    else:
+        answer = 0
+
+    return answer
