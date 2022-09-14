@@ -1,0 +1,11 @@
+def solution(n):
+    answer = 0
+
+    for i in range(1, 466):
+        num = i * i * i 
+        if num <= n:
+            answer = num 
+        else:
+            break 
+
+    return answer
