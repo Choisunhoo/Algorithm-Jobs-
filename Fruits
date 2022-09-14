@@ -1,0 +1,8 @@
+def solution(fruits):
+
+    for i in range(1, len(fruits)):
+        fruits[i] = max(fruits[i-1] + fruits[i], fruits[i])
+
+    answer = max(fruits)
+
+    return answer
