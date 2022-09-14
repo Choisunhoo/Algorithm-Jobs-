@@ -1,0 +1,12 @@
+def solution(A):
+    result = 0 
+
+    for follow in A: 
+        check = [follow[1], follow[0]]
+        if check in A:
+            result += 1
+
+
+    result /= 2
+
+    return result
