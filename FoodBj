@@ -1,0 +1,30 @@
+def solution(bj, one, two):
+
+
+    answer = str()
+
+    three = str()
+    prize = 450
+    data = [] 
+
+    for o in one:
+        data.append(o)
+        prize += 150
+
+    for t in two:
+        data.append(t)
+        prize += 300
+
+    for winner in bj:
+        if winner not in data:
+            three = winner
+
+    prize = str(prize)
+
+    answer += prize
+    answer += "만원"
+    answer += "("
+    answer += three
+    answer += ")"
+
+    return answer
