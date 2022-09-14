@@ -1,0 +1,22 @@
+from collections import deque
+
+def solution(s):
+    s = list(s)
+
+    answer = 0
+
+    check = deque()
+
+    for alpha in s:
+        if len(check) == 0 or alpha not in check:
+            check.append(alpha)
+        else: 
+            while (True):
+                check.popleft()
+                if alpha not in check:
+                    check.append(alpha)
+                    break 
+
+        answer = max(answer, len(check))
+
+    return answer
