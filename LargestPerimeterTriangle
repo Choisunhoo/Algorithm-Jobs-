@@ -1,0 +1,14 @@
+from itertools import combinations
+
+def solution(arr):
+    answer = 0
+    data = list(combinations(arr, 3))
+
+
+    for i in range(len(data)):
+        longest = max(data[i])
+        circumference = sum(data[i])
+        if longest < circumference - longest and answer < circumference:
+            answer = circumference
+
+    return answer
