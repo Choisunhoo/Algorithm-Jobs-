@@ -1,0 +1,19 @@
+def solution(arr):
+    result = 0
+
+    data = [] 
+
+    arr.sort()
+
+    for bead in arr:
+        if bead not in data:
+            data.append(bead)
+        elif data[-1] == bead: 
+            data.pop()
+
+    if len(data) == 1:
+        result = data[0]
+    else: 
+        result = 0 
+
+    return result
