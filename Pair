@@ -1,0 +1,41 @@
+from collections import deque
+def bfs(num, check, graph):
+
+    queue = deque()
+    queue.append(num)
+
+    check[num] = False
+    data = [] 
+    data.append(num)
+
+    while queue:
+        x = queue.popleft()
+        for node in graph[x]:
+            if node not in data and check[node] == True:
+                queue.append(node)
+                data.append(node)
+                check[node] = False
+
+
+    return data 
+
+def solution(N, language):
+    check = [True for _ in range(N)]
+    graph = [[] for i in range(N)]
+    result = [] 
+
+    for student in language: 
+        graph[student[0]].append(student[1])
+        graph[student[1]].append(student[0])
+
+    for i in range(N):
+        if check[i] == True:
+            print(i)
+            temp = bfs(i, check, graph)
+            result.append(temp)
+
+    answer = 0
+    for i in range(len(result) - 1):
+        for j in range(i+1, len(result)):
+            answer += len(result[i]) * len(result[j])
+    return answer
