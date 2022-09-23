@@ -1,0 +1,10 @@
+def solution(orders, n):
+    cancel_num = 0 
+    order_num = 0
+
+    while True:
+        order_num += 1
+        if order_num not in orders: 
+            cancel_num += 1 
+        if cancel_num == n:
+            return order_num
