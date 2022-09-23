@@ -1,0 +1,8 @@
+def solution(n):
+    b = '0b'
+    for i in range(n):
+        b += '1'
+
+    result = int(b, 2) % 1000000007
+
+    return result
