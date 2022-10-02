@@ -1,0 +1,19 @@
+def solution(array, s):
+    s = list(s)
+    result = 0
+
+    for word in array: 
+        word = list(word)
+        check = True
+        index = len(s) - 1
+        for i in range(len(word)-1, -1, -1):
+            if word[i] != s[index]:
+                check = False
+                break
+            else:
+                index -= 1
+
+        if check == True:
+            result += 1
+
+    return result
