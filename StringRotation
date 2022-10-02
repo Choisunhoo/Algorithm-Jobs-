@@ -1,0 +1,23 @@
+def solution(S1, S2):
+    S1 == list(S1)
+    result = 0
+
+    for i in range(len(S1)):
+        word_1 = str()
+        word_2 = str()
+        word = str()
+
+        for j in range(i+1):
+            word_1 += S1[j]
+
+        for k in range(i+1, len(S1)):
+            word_2 += S1[k]
+
+        word += word_2
+        word += word_1
+
+        if word == S2:
+            result = 1
+            return result 
+
+    return result
