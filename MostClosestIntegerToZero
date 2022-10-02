@@ -1,0 +1,12 @@
+def solution(arr):
+    arr.sort()
+
+    result = 101
+
+    for num in arr: 
+        A = abs(num)
+        B = abs(result)
+        if A < B:
+            result = num
+
+    return result
