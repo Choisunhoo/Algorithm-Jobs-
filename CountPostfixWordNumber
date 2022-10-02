@@ -1,0 +1,17 @@
+def solution(s):
+    s = list(s)
+
+    data = [0] * 26
+
+    for alpha in s: 
+        if alpha == " ":
+            continue
+        index = ord(alpha) - 97
+        data[index] = 1
+
+    if 0 in data:
+        result = False
+    else:
+        result = True
+
+    return result
