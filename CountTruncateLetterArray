@@ -1,0 +1,21 @@
+def solution(arr):
+    data = []
+
+    for element in arr:
+        element = list(element)
+        word = str()
+        for alpha in element:
+            if alpha == " ":
+                data.append(word)
+                word = str()
+            else:
+                word += alpha
+
+        if word != "":
+            data.append(word)
+
+    data = set(data)
+    data = list(data)
+
+    result = len(data)
+    return result
