@@ -1,0 +1,20 @@
+def solution(s):
+    s = list(s)
+
+    word = str()
+    data = []
+
+    for alpha in s:
+        if alpha == " ":
+            data.append(word)
+            word = str()
+        else:
+            word += alpha
+
+    data.append(word)
+
+    data = set(data)
+    data = list(data)
+
+    result = len(data)
+    return result
