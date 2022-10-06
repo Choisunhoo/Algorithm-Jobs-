@@ -1,0 +1,8 @@
+def solution(finish, submit):
+    answer = 0
+
+    for student in finish:
+        if student in submit:
+            answer += 1
+
+    return answer
