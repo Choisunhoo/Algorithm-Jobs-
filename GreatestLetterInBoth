@@ -1,0 +1,11 @@
+def solution(s):
+    answer = ''
+    s = list(s)
+    s.sort()
+
+    for alpha in s:
+        if 97 <= ord(alpha) <= 122:
+            temp_alpha = ord(alpha) - 32
+            if chr(temp_alpha) in s:
+                answer = chr(temp_alpha) 
+    return answer
