@@ -1,0 +1,10 @@
+def solution(arr, fee):
+    answer = 0
+
+    for num in arr: 
+        temp = num * fee
+        free = num // 5;
+        temp -= free * fee
+        answer += temp
+
+    return answer
