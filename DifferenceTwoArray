@@ -1,0 +1,13 @@
+def solution(arr1, arr2):
+    answer = []
+    for num in arr1:
+        if num not in arr2:
+            answer.append(num)
+
+    for num in arr2:
+        if num not in arr1:
+            answer.append(num)
+
+    answer.sort()
+
+    return answer
