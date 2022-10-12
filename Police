@@ -1,0 +1,16 @@
+def solution(n, k, thieves):
+    thieves.sort()
+
+    police = 0 
+    result = 0
+
+    for i in range(6):
+        current = thieves.pop()
+        if police >= current:
+            break 
+        plus = n - current
+        police += plus
+        if police <= n:
+            result += 1
+
+    return result
