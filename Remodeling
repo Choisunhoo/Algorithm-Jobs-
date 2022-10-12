@@ -1,0 +1,14 @@
+def solution(now, tobe):
+    result = 0 
+
+    for i in range(len(now)):
+        bulding_now = now[i]
+        bulding_tobe = tobe[i]
+
+        if bulding_now < bulding_tobe:
+            result += (bulding_tobe - bulding_now)
+        else: 
+            result += bulding_tobe
+            result += bulding_now
+
+    return result
