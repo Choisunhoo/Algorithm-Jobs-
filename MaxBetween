@@ -1,0 +1,9 @@
+def solution(arr, a, b):
+    arr.sort()
+    result = -1 
+    for num in arr:
+        if a <= num <= b:
+            result = num
+            break 
+
+    return result 
