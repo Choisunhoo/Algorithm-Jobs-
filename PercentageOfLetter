@@ -1,0 +1,11 @@
+def solution(text, s):
+    text = list(text)
+
+    cnt = 0
+
+    for alpha in text:
+        if alpha == s:
+            cnt += 1
+
+    result = int(cnt * 100/ len(text))
+    return result
