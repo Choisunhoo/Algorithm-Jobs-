@@ -1,0 +1,18 @@
+def solution(board):
+    result = 0 
+
+    for i in range(len(board)):
+        check_1 = True
+        check_2 = True
+        for j in range(len(board)):
+            if board[i][j] == False:
+                check_1 = False
+            if board[j][i] == False:
+                check_2 = False
+
+        if check_1 == True:
+            result += 1
+        if check_2 == True:
+            result += 1
+
+    return result 
