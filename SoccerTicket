@@ -1,0 +1,10 @@
+def solution(arr, t):
+    result = 0
+
+    for member in arr:
+        member -= 1
+
+        result += t * 2
+        result += t * member
+
+    return result
