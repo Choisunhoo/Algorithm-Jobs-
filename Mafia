@@ -1,0 +1,13 @@
+def solution(members):
+    answer = []
+    not_answer = [] 
+    check = members[0]
+
+    for i in range(len(members)):
+        if members[i] == check:
+            not_answer.append(i)
+        else:
+            answer.append(i)
+    if len(answer) != 2:
+        answer = not_answer 
+    return answer
