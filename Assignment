@@ -1,0 +1,20 @@
+def solution(problems):
+    answer = 0
+    not_answer = 0
+    for word in problems: 
+        check_word = list(word)
+        check = [] 
+        last = check_word[0]
+        check.append(check_word[0]) 
+        for i in range(1, len(check_word)):
+            alpha = check_word[i]
+            if last == alpha:
+                continue
+            elif last != alpha and alpha not in check:
+                last = alpha
+                check.append(alpha)
+            elif last != alpha and alpha in check:
+                not_answer += 1
+                break
+    answer = len(problems) - not_answer
+    return answer
