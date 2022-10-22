@@ -1,0 +1,11 @@
+def solution(arr, brr):
+    answer = 0
+    for i in range(len(arr)):
+        if arr[i] < brr[i]:
+            temp = arr[i]
+            arr[i] = brr[i]
+            brr[i] = temp 
+
+    answer = max(arr) * max(brr)
+
+    return answer
