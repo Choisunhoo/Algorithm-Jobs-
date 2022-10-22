@@ -1,0 +1,19 @@
+def solution(N, dices):
+    answer = ''
+    cnt_zero = 0
+    cnt_base = 0
+    for i in range(N):
+        zero = dices[i][0]
+        base = dices[i][1]
+        if zero > base:
+            cnt_zero += 1
+        elif base > zero:
+            cnt_base += 1
+
+    if cnt_zero > cnt_base:
+        answer = "zero"
+    elif cnt_zero < cnt_base:
+        answer = "base"
+    else:
+        answer = "draw"
+    return answer
