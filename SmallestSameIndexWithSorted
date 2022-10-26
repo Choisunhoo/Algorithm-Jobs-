@@ -1,0 +1,8 @@
+def solution(nums, n):
+    answer = -1
+    nums.sort()
+    for i in range(len(nums)):
+        if nums[i] == n:
+            answer = i
+            break
+    return answer
