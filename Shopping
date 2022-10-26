@@ -1,0 +1,9 @@
+def solution(money, ZERO):
+    answer = []
+    ZERO.sort()
+    for i in range(len(ZERO)):
+        for j in range(i+1, len(ZERO)):
+            if ZERO[i] + ZERO[j] == money:
+                answer.append(ZERO[i])
+                answer.append(ZERO[j])
+                return answer
