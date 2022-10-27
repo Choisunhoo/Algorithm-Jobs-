@@ -1,0 +1,10 @@
+def solution(S):
+    S = list(S)
+    answer = 1 
+
+    for i in range(len(S)):
+        if S[i] != S[len(S) - 1 - i]:
+            answer = 0 
+            break
+
+    return answer
