@@ -1,0 +1,15 @@
+def solution(arr):
+    answer = 0
+    data = [] 
+    check = len(arr) / 2
+    arr.sort(reverse=True)
+
+    for score in arr:
+        if len(data) < check:
+            data.append(score)
+            answer += 1
+        elif len(data) >= check and score in data:
+            answer += 1 
+
+
+    return answer
