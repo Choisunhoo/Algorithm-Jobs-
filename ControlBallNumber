@@ -1,0 +1,16 @@
+def solution(array):
+    answer = []
+    data = [] 
+
+    for i in range(1, 100):
+        if array == data: 
+            answer.append('End')
+            break
+        if i in array:
+            data.append(i)
+            answer.append('In')
+        elif i not in array:
+            answer.append('In')
+            answer.append('Out')
+
+    return answer
