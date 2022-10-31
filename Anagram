@@ -1,0 +1,32 @@
+def solution(a, b):
+    exception = [" ", ".", ",", "?", "!"]
+    answer = "YES"
+
+    a = a.lower()
+    b = b.lower()
+    a = list(a)
+    b = list(b)
+    result_a = []
+    result_b = []
+
+    for alpha in a:
+        if alpha not in exception:
+            result_a.append(alpha)
+
+    for alpha in b:
+        if alpha not in exception:
+            result_b.append(alpha)
+
+    result_a.sort()
+    result_b.sort()
+
+    if len(result_a) != len(result_b):
+        answer = "NO"
+        return answer
+    else:
+        for i in range(len(result_a)):
+            if result_a[i] != result_b[i]:
+                answer = "NO"
+                return answer
+
+    return answer
