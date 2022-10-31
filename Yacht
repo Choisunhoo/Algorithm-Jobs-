@@ -1,0 +1,43 @@
+def solution(arr):
+    data = [0] * 6
+
+    result = []
+
+    for num in arr:
+        data[num - 1] += 1
+
+    check_straight = 0
+
+    mini = []
+
+    for i in range(len(data)):
+        if data[i] == 1:
+            check_straight += 1
+        elif data[i] == 0:
+            mini.append(check_straight)
+            check_straight = 0 
+
+    mini.append(check_straight)
+    if 5 in mini:
+        result.append(30)
+    if 4 in mini:
+        result.append(15)
+
+    if 5 in data:
+        result.append(50)
+    elif 4 in data:
+        sum = 0
+        for i in range(len(data)):
+            sum += (data[i] * (i + 1))
+        result.append(sum)
+    elif 3 in data and 2 in data:
+        sum = 0
+        for i in range(len(data)):
+            sum += (data[i] * (i + 1))
+        result.append(sum)
+
+    for i in range(len(data)):
+        result.append((data[i] * (i + 1)))
+
+    answer = max(result)
+    return answer
