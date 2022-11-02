@@ -1,0 +1,8 @@
+def solution(n, price):
+    sum = 0 
+
+    sum += (n // 11) * price * 10
+    n = n % 11
+    sum += n * price
+
+    return sum
