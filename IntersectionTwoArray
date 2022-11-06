@@ -1,0 +1,9 @@
+def solution(arr1, arr2):
+    answer = []
+
+    for num in arr1:
+        if num in arr2:
+            answer.append(num)
+    answer.sort()
+
+    return answer
