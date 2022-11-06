@@ -1,0 +1,9 @@
+def solution(s, n):
+    answer = 0
+    s = list(s)
+
+    for num in s:
+        if int(num) == n:
+            answer += 1
+
+    return answer
