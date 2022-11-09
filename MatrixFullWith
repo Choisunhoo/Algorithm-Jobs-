@@ -1,0 +1,10 @@
+def solution(matrix, b):
+    answer = True
+    length = len(matrix)
+    for i in range(length):
+        for j in range(length):
+            if matrix[i][j] != b:
+                answer = False 
+                return answer
+
+    return answer
