@@ -1,0 +1,11 @@
+def solution(arr, prefix, separator, postfix):
+    answer = ''
+    answer += prefix
+    for i in range(len(arr) - 1):
+        answer += str(arr[i]) 
+        answer += separator
+
+    answer += str(arr[-1]) 
+    answer += postfix
+
+    return answer
