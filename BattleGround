@@ -1,0 +1,16 @@
+def solution(n, stat1, stat2):
+    answer = ''
+    for i in range(n):
+        data = [] 
+        for j in range(n):
+            if i == j:
+                continue 
+            if stat1[i] > stat1[j]:
+                data.append(j)
+            if stat2[i] > stat2[j]:
+                data.append(j)
+        if len(data) >= n // 2:
+            answer += "1"
+        else: 
+            answer += "0"
+    return answer
