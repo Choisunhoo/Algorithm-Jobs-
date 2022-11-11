@@ -1,0 +1,19 @@
+import itertools
+
+def solution(schedule):
+    check = itertools.combinations(schedule, 3)
+    answer = 0
+
+
+    for arr in check:
+        first = []
+        second = [] 
+        for j in range(3):
+            first.append(arr[j][0])
+            second.append(arr[j][1])
+
+        first = list(set(first))
+        second = list(set(second))
+        if len(first) == 3 or len(second) == 3:
+            answer += 1
+    return answer
